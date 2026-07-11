@@ -1,4 +1,5 @@
 import os
+import time
 from ast import literal_eval
 from pathlib import Path
 import json
@@ -73,8 +74,17 @@ def read_all_grids():
 
 
 def generate_all_crosswords(grids):
+    t0 = time.time()
     words_grids = [(grid + get_column_words(grid), grid) for grid in grids]
-    return [(generate_clues(wg[0]), wg[1]) for wg in words_grids]
+    results = []
+    for i, wg in enumerate(words_grids):
+        clues = generate_clues(wg[0])
+        results.append((clues, wg[1]))
+        elapsed = time.time() - t0
+        eta = (elapsed / (i + 1)) * (len(grids) - i - 1) if i > 0 else 0
+        print(f"  Clues {i + 1}/{len(grids)} — {elapsed:.1f}s elapsed, ~{eta:.0f}s remaining", flush=True)
+    print(f"Clues done: {len(grids)}/{len(grids)} in {time.time() - t0:.1f}s")
+    return results
 
 
 def generate_clues(crossword_words):
@@ -95,8 +105,10 @@ def write_crosswords_to_json(crosswords):
 
 
 def create_cword_prod_pipe(num_grids=1):
+    print(f"Phase 1/2: Generating {num_grids} grid(s)...")
     generate_grids(row_min=6, row_max=8, col_min=4, col_max=5, num_grids=num_grids, write_mode="w")
     grid = read_all_grids()
+    print(f"\nPhase 2/2: Generating clues for {len(grid)} crossword(s)...")
     crossword = generate_all_crosswords(grid)
     write_crosswords_to_json(crossword)
 
@@ -105,9 +117,13 @@ if __name__ == "__main__":
     log_level = logging.DEBUG if "--verbose" in sys.argv[1:] else logging.WARNING
     logging.basicConfig(level=log_level)
 
+    t_total = time.time()
     if len(sys.argv) > 1 and sys.argv[1] == "prod":
         count = int(sys.argv[2]) if len(sys.argv) > 2 else 1
         generate_grids(row_min=6, row_max=8, col_min=4, col_max=5, num_grids=count, write_mode="w")
     grids = read_all_grids()
+    if len(grids) > 1:
+        print(f"\nGenerating clues for {len(grids)} crossword(s)...")
     crosswords = generate_all_crosswords(grids)
     write_crosswords_to_json(crosswords)
+    print(f"\nDone. {len(grids)} crossword(s) in {time.time() - t_total:.1f}s total")

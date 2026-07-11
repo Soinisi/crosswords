@@ -2,6 +2,7 @@ from pathlib import Path
 from functools import lru_cache
 import logging
 import sys
+import time
 import numpy as np
 
 
@@ -283,8 +284,9 @@ def user_inputs_loop():
 
 
 def generate_grids(row_min, row_max, col_min, col_max, num_grids, write_mode="a"):
+    t0 = time.time()
     with open(GRID_FILEPATH, write_mode, encoding="utf-8") as f:
-        for _ in range(num_grids):
+        for i in range(num_grids):
             grid = solve_random_interval(row_min, row_max, col_min, col_max, path=WORD_LIST_FILEPATH)
             if grid is not None:
                 logger.debug("Solution found:")
@@ -297,6 +299,10 @@ def generate_grids(row_min, row_max, col_min, col_max, num_grids, write_mode="a"
                 f.write(str(grid) + "\n")
             else:
                 logger.debug("No solution found.")
+            elapsed = time.time() - t0
+            eta = (elapsed / (i + 1)) * (num_grids - i - 1) if i > 0 else 0
+            print(f"  Grid {i + 1}/{num_grids} — {elapsed:.1f}s elapsed, ~{eta:.0f}s remaining", flush=True)
+    print(f"Grids done: {num_grids}/{num_grids} in {time.time() - t0:.1f}s")
 
 
 def user_input_generate_grids():

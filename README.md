@@ -44,6 +44,25 @@ python -m crossword_creator.app
 # Then open http://127.0.0.1:5000/minicrossword
 ```
 
+## Deploy to Netlify
+
+The production frontend is a static HTML page that loads `crossword.json` and picks today's crossword based on the date (Wordle-style — same puzzle for all users each day).
+
+```bash
+# 1. Generate crosswords (e.g. 30 days worth)
+python -m crossword_creator.crossword_creator prod 30
+
+# 2. Build the static site
+python -m crossword_creator.app build
+
+# 3. Deploy
+netlify deploy --prod
+```
+
+The site folder (`crossword_creator/site/`) contains:
+- `index.html` — standalone crossword player (date-based selection, all interactive features)
+- `crossword.json` — pre-generated crossword data
+
 ## Commands
 
 ### Web server
@@ -52,13 +71,14 @@ python -m crossword_creator.app
 |---|---|
 | `python -m crossword_creator.app` | Flask dev server (debug=True, reload on change, localhost only) |
 | `python -m crossword_creator.app prod` | Generate a fresh crossword, then serve via waitress on `0.0.0.0:5000` |
+| `python -m crossword_creator.app build` | Copy `crossword.json` into `site/` for static deployment |
 
 ### Generating crosswords (no web server)
 
 | Command | Description |
 |---|---|
 | `python -m crossword_creator.crossword_creator prod` | Generate 1 grid + AI clues and write `crossword.json` |
-| `python -m crossword_creator.crossword_creator prod 10` | Generate 10 crosswords at once |
+| `python -m crossword_creator.crossword_creator prod 30` | Generate 30 crosswords at once (with progress + ETA) |
 | `python -m crossword_creator.crossword_creator --verbose` | Same with debug-level logging |
 
 ### Interactive grid generation
@@ -81,11 +101,14 @@ python -m crossword_creator.grid_creator
      crossword_creator.py    ← LLM via pydantic-ai (OpenAI / local llamafile)
               │
         crossword.json       ← grids + clues
-              │
-           app.py            ← Flask + HTML crossword
-              │
-     http://host/minicrossword
+           /       \
+          /         \
+      app.py       site/index.html
+   (Flask dev)    (static, Netlify)
+
 ```
+
+**Crossword selection**: The static site uses the current date (`days since epoch % total`) to pick a crossword — every user gets the same puzzle each day. The Flask dev server uses sequential one-time consumption (renames `crossword_N` → `used_crossword_N`).
 
 ## Files
 

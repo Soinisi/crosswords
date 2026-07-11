@@ -657,7 +657,13 @@ def index():
 
 
 if __name__ == "__main__":
-    if sys.argv[-1] == "prod":
+    if sys.argv[-1] == "build":
+        import shutil
+        site_dir = Path(__file__).parent / "site"
+        site_dir.mkdir(exist_ok=True)
+        shutil.copy(CROSSWORD_JSON_PATH, site_dir / "crossword.json")
+        print(f"Site built: {site_dir}/")
+    elif sys.argv[-1] == "prod":
         print("Starting production server on http://0.0.0.0:5000")
         from waitress import serve
 
