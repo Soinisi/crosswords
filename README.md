@@ -1,137 +1,169 @@
-# MiniWöördi — Crossword Puzzle Generator
+# MiniWöördi - Crossword Puzzle Generator
 
-Generates crossword grids from a 91K-word dictionary, produces AI-powered clues via OpenAI, and serves an interactive web puzzle with a timer and win celebration.
+Generates crossword grids from a 91K-word dictionary, produces AI-powered clues, and serves a mobile-first static crossword app.
 
 ## Setup
 
 ```bash
-# 1. Install dependencies
-pip install -r requirements.txt python-dotenv
+# Python generation dependencies
+pip install -r requirements.txt
+
+# Static site dev server
+npm install
 ```
 
-Create `.env` in the repo root. Use **either** remote OpenAI **or** a local llamafile (see below).
+Create `.env` in the repo root. Use either remote OpenAI or a local llamafile.
 
 ```bash
-# Remote OpenAI (cloud)
-echo 'OPENAI_API_KEY=your-key-here' > .env
-echo 'OPENAI_BASE_URL=https://api.openai.com/v1' >> .env
+# Remote OpenAI
+OPENAI_API_KEY=your-key-here
+OPENAI_BASE_URL=https://api.openai.com/v1
 ```
 
-The `.env` is loaded at import time from the current working directory (repo root) by `load_dotenv()` in `crossword_creator.py`.
+The `.env` file is loaded from the current working directory by `load_dotenv()` in `crossword_creator.py`.
 
-### Remote OpenAI (cloud)
-Set `OPENAI_API_KEY` and optionally `OPENAI_BASE_URL` in `.env`. The default model is `gpt-4.1`.
+### Local Model
 
-### Local model (offline testing)
 Start a llamafile in a separate terminal:
+
 ```bash
 /home/simo/projects/ai/llm_models/Qwen3.5-4B-Q5_K_S.llamafile
 ```
-Then in `.env`:
+
+Then set:
+
 ```bash
 LLM_BASE_URL=http://localhost:8080/v1
 LLM_API_KEY=not-needed
 LLM_MODEL_NAME=local
 ```
-The llamafile serves an OpenAI-compatible HTTP API on `localhost:8080` — no API key required. Omit all `LLM_*` vars to use remote OpenAI as before.
 
-## Quick start
+Unset all `LLM_*` vars to use the OpenAI cloud defaults.
+
+## Quick Start
 
 ```bash
-# Dev server with auto-reload (debug mode)
-python -m crossword_creator.app
-
-# Then open http://127.0.0.1:5000/minicrossword
+# Run the static crossword UI locally with Node/Vite
+npm run dev
 ```
 
-## Deploy to Netlify
+Open the local URL printed by Vite. The static app loads `crossword_creator/site/crossword.json`.
 
-The production frontend is a static HTML page that loads `crossword.json` and picks today's crossword based on the date (Wordle-style — same puzzle for all users each day).
+## Generate Crosswords
 
 ```bash
-# 1. Generate crosswords locally (e.g. 30 days worth)
+# Generate 1 grid + AI clues and write crossword_creator/crossword.json
+python -m crossword_creator.crossword_creator prod
+
+# Generate 30 crosswords at once
 python -m crossword_creator.crossword_creator prod 30
 
-# 2. Commit and push — Netlify auto-deploys on push.
+# Same with debug logging
+python -m crossword_creator.crossword_creator --verbose
+```
+
+To generate raw grids interactively:
+
+```bash
+python -m crossword_creator.grid_creator
+```
+
+Generated grids are appended to `crossword_creator/crossword_grids.txt`.
+
+## Local Data Copy
+
+The UI reads `crossword_creator/site/crossword.json`. After generating new data, copy it into the site folder for local preview:
+
+```bash
+cp crossword_creator/crossword.json crossword_creator/site/crossword.json
+```
+
+Netlify runs the same copy command during deployment.
+
+## Deploy To Netlify
+
+The production frontend is a static HTML page that loads `crossword.json` and picks today's crossword in the browser.
+
+```bash
+# 1. Generate crosswords locally, for example 30 days worth
+python -m crossword_creator.crossword_creator prod 30
+
+# 2. Commit and push. Netlify auto-deploys on push.
 #    The build step in netlify.toml copies crossword.json into site/.
 git add crossword_creator/crossword.json
 git commit -m "30 new crosswords"
 git push
 ```
 
-The site folder (`crossword_creator/site/`) contains:
-- `index.html` — standalone crossword player (date-based selection, all interactive features)
-- `crossword.json` — copied during Netlify build from the committed data
+Netlify config:
 
-## Commands
-
-### Web server
-
-| Command | Description |
-|---|---|
-| `python -m crossword_creator.app` | Flask dev server (debug=True, reload on change, localhost only) |
-| `python -m crossword_creator.app prod` | Generate a fresh crossword, then serve via waitress on `0.0.0.0:5000` |
-
-### Generating crosswords (no web server)
-
-| Command | Description |
-|---|---|
-| `python -m crossword_creator.crossword_creator prod` | Generate 1 grid + AI clues and write `crossword.json` |
-| `python -m crossword_creator.crossword_creator prod 30` | Generate 30 crosswords at once (with progress + ETA) |
-| `python -m crossword_creator.crossword_creator --verbose` | Same with debug-level logging |
-
-### Interactive grid generation
-
-```bash
-python -m crossword_creator.grid_creator
-# Prompts for row length range, column count range, and number of grids.
-# Generated grids are appended to crossword_grids.txt.
+```toml
+[build]
+  publish = "crossword_creator/site"
+  command = "cp crossword_creator/crossword.json crossword_creator/site/crossword.json"
 ```
+
+## Daily Rotation
+
+`site/index.html` picks a crossword by local calendar day, so the puzzle changes at midnight in the visitor's local timezone.
+
+It rotates among committed `crossword_*` entries in `crossword.json`. Netlify does not generate new crosswords on a schedule; new puzzles are added when regenerated and deployed.
 
 ## Architecture
 
+```text
+          wl.txt
+             |
+     grid_creator.py         backtracking NumPy solver
+             |
+     crossword_grids.txt     raw grids, Python repr format
+             |
+   crossword_creator.py      LLM via pydantic-ai
+             |
+       crossword.json        generated grids + clues
+             |
+       site/index.html       static mobile-first app
+             |
+          Netlify            static hosting
 ```
-           wl.txt
-              │
-      grid_creator.py        ← backtracking NumPy solver
-              │
-      crossword_grids.txt    ← raw grids (Python repr format)
-              │
-     crossword_creator.py    ← LLM via pydantic-ai (OpenAI / local llamafile)
-              │
-        crossword.json       ← grids + clues
-           /       \
-          /         \
-      app.py       site/index.html
-   (Flask dev)    (static, Netlify)
 
-```
-
-**Crossword selection**: The static site uses the current date (`days since epoch % total`) to pick a crossword — every user gets the same puzzle each day. The Flask dev server uses sequential one-time consumption (renames `crossword_N` → `used_crossword_N`).
+Python is used only for crossword generation. The user-facing app is static HTML/CSS/JS and is run locally with Node/Vite.
 
 ## Files
 
 | File | Purpose |
 |---|---|
-| `crossword.json` | **Active** crossword data. Mutated by `app.py` on startup — the served crossword key is renamed from `crossword_N` to `used_crossword_N` so no puzzle repeats. |
-| `crossword_arc.json` | Archive of previously served crosswords. Never read at runtime — manual backup store. |
-| `crossword_grids.txt` | Raw grids output by the solver, one `list[str]` per line. Append-only from `grid_creator.py`. |
-| `wl.txt` | 91,733-line word dictionary. All-caps proper nouns + common words. Used as-is by the solver. |
+| `crossword_creator/crossword.json` | Generated crossword data. Source copied into the static site at deploy time. |
+| `crossword_creator/site/index.html` | Static crossword app. Mobile-first UI and local-midnight daily selection. |
+| `crossword_creator/site/crossword.json` | Runtime data file for local/static serving. Copied from `crossword_creator/crossword.json`. |
+| `crossword_creator/crossword_arc.json` | Archive of older crosswords. Not read at runtime. |
+| `crossword_creator/crossword_grids.txt` | Raw grids output by the solver, one `list[str]` per line. |
+| `crossword_creator/wl.txt` | Word dictionary used by the solver. |
+| `package.json` | Node/Vite local static-site workflow. |
+| `netlify.toml` | Netlify static deploy config. |
 
 ## Dependencies
 
-- `flask` — web server
-- `waitress` — production WSGI server (used in `prod` mode)
-- `pydantic-ai-slim[openai]` — AI agent for clue generation
-- `numpy` — fast array-based word matching in the grid solver
-- `python-dotenv` — loads `.env` (not in `requirements.txt`, install manually)
+Python:
+
+| Dependency | Purpose |
+|---|---|
+| `pydantic-ai-slim[openai]` | AI agent for clue generation. |
+| `numpy` | Fast array-based word matching in the grid solver. |
+| `python-dotenv` | Loads `.env`. |
+
+Node:
+
+| Dependency | Purpose |
+|---|---|
+| `vite` | Local static-site dev server. |
 
 ## Model
 
 | Env var | Default | Purpose |
 |---|---|---|
-| `LLM_MODEL_NAME` | `gpt-4.1` | Model name sent to the endpoint |
-| `LLM_BASE_URL` | `OPENAI_BASE_URL` | API base URL |
-| `LLM_API_KEY` | `OPENAI_API_KEY` | API key |
+| `LLM_MODEL_NAME` | `gpt-4.1` | Model name sent to the endpoint. |
+| `LLM_BASE_URL` | `OPENAI_BASE_URL` | API base URL. |
+| `LLM_API_KEY` | `OPENAI_API_KEY` | API key. |
 
 Set `LLM_*` vars to override for local models. Unset them to use the OpenAI cloud defaults.
