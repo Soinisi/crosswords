@@ -49,19 +49,19 @@ python -m crossword_creator.app
 The production frontend is a static HTML page that loads `crossword.json` and picks today's crossword based on the date (Wordle-style — same puzzle for all users each day).
 
 ```bash
-# 1. Generate crosswords (e.g. 30 days worth)
+# 1. Generate crosswords locally (e.g. 30 days worth)
 python -m crossword_creator.crossword_creator prod 30
 
-# 2. Build the static site
-python -m crossword_creator.app build
-
-# 3. Deploy
-netlify deploy --prod
+# 2. Commit and push — Netlify auto-deploys on push.
+#    The build step in netlify.toml copies crossword.json into site/.
+git add crossword_creator/crossword.json
+git commit -m "30 new crosswords"
+git push
 ```
 
 The site folder (`crossword_creator/site/`) contains:
 - `index.html` — standalone crossword player (date-based selection, all interactive features)
-- `crossword.json` — pre-generated crossword data
+- `crossword.json` — copied during Netlify build from the committed data
 
 ## Commands
 
@@ -71,7 +71,6 @@ The site folder (`crossword_creator/site/`) contains:
 |---|---|
 | `python -m crossword_creator.app` | Flask dev server (debug=True, reload on change, localhost only) |
 | `python -m crossword_creator.app prod` | Generate a fresh crossword, then serve via waitress on `0.0.0.0:5000` |
-| `python -m crossword_creator.app build` | Copy `crossword.json` into `site/` for static deployment |
 
 ### Generating crosswords (no web server)
 

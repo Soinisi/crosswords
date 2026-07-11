@@ -1,3 +1,3 @@
 [build]
   publish = "crossword_creator/site"
-  command = "python -m crossword_creator.app build"
+  command = "cp crossword_creator/crossword.json crossword_creator/site/crossword.json"

@@ -17,9 +17,6 @@ python -m crossword_creator.app
 # Production: generate crossword + clues, then serve via waitress on 0.0.0.0:5000
 python -m crossword_creator.app prod
 
-# Build static site for Netlify (copies crossword.json into site/)
-python -m crossword_creator.app build
-
 # Generate grid + AI clues and write crossword.json (no web server)
 python -m crossword_creator.crossword_creator prod
 
