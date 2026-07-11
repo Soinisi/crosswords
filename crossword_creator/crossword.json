@@ -1,0 +1,24 @@
+{
+    "used_crossword_0": {
+        "clues": {
+            "backdrop": "Stage setting behind the main action",
+            "iranians": "People from Tehran's country",
+            "derelict": "Abandoned and neglected",
+            "estelle": "Name meaning 'star' in French",
+            "bide": "Wait patiently",
+            "ares": "Greek god of war",
+            "cart": "Wheeled vehicle for hauling",
+            "knee": "Joint between thigh and shin",
+            "dill": "Herb used for pickles",
+            "rail": "Train track or fencing beam",
+            "once": "One time in the past",
+            "pst": "Time zone west of MST"
+        },
+        "grid": [
+            "backdrop",
+            "iranians",
+            "derelict",
+            "estelle"
+        ]
+    }
+}

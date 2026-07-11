@@ -1,0 +1,4 @@
+flask
+waitress
+pydantic-ai-slim[openai]
+numpy
