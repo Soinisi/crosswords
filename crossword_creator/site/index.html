@@ -8,18 +8,17 @@
     :root {
         color-scheme: light;
         --cell-size: 42px;
-        --ink: #1d1b2f;
-        --muted: #69637f;
-        --paper: #fffaf0;
-        --panel: rgba(255, 255, 255, 0.84);
-        --line: rgba(44, 35, 67, 0.16);
-        --grid-line: #221d35;
-        --accent: #ff6b35;
-        --accent-2: #4f46e5;
-        --active: #f9d976;
-        --correct: #9ee6b3;
-        --incorrect: #ff9aa2;
-        --shadow: 0 24px 70px rgba(31, 24, 54, 0.2);
+        --ink: #2f2a1f;
+        --muted: #756d5b;
+        --paper: #f4ead8;
+        --line: rgba(72, 61, 43, 0.22);
+        --grid-line: #514533;
+        --accent: #a85f3d;
+        --accent-2: #68724b;
+        --active: #ead49b;
+        --current: #f2dfac;
+        --correct: #b9c9a3;
+        --incorrect: #d9a08e;
     }
 
     * {
@@ -28,7 +27,7 @@
 
     html {
         min-height: 100%;
-        background: #19162b;
+        background: var(--paper);
     }
 
     body {
@@ -37,10 +36,11 @@
         font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         color: var(--ink);
         background:
-            radial-gradient(circle at top left, rgba(255, 221, 87, 0.55), transparent 34rem),
-            radial-gradient(circle at 90% 15%, rgba(80, 70, 229, 0.36), transparent 30rem),
-            linear-gradient(145deg, #fff5d6 0%, #ffd6bf 42%, #d7cdfc 100%);
-        padding: max(14px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+            linear-gradient(rgba(104, 114, 75, 0.035) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(104, 114, 75, 0.035) 1px, transparent 1px),
+            var(--paper);
+        background-size: 22px 22px;
+        padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
     }
 
     button,
@@ -49,25 +49,22 @@
     }
 
     .app-shell {
-        width: min(1160px, 100%);
+        width: min(1080px, 100%);
         margin: 0 auto;
     }
 
     .topbar {
         position: sticky;
-        top: max(8px, env(safe-area-inset-top));
+        top: 0;
         z-index: 20;
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 12px;
-        padding: 12px 14px;
-        margin-bottom: 14px;
-        background: rgba(255, 250, 240, 0.82);
-        border: 1px solid rgba(255, 255, 255, 0.72);
-        border-radius: 24px;
-        box-shadow: 0 12px 40px rgba(31, 24, 54, 0.14);
-        backdrop-filter: blur(18px);
+        padding: 8px 0 12px;
+        margin-bottom: 12px;
+        background: rgba(244, 234, 216, 0.92);
+        border-bottom: 1px solid var(--line);
     }
 
     .brand {
@@ -76,8 +73,8 @@
 
     .eyebrow {
         display: block;
-        color: var(--muted);
-        font-size: 0.7rem;
+        color: var(--accent);
+        font-size: 0.66rem;
         font-weight: 800;
         letter-spacing: 0.14em;
         text-transform: uppercase;
@@ -85,55 +82,46 @@
 
     h1 {
         margin: 0;
-        font-size: clamp(1.45rem, 7vw, 3rem);
-        line-height: 0.95;
-        letter-spacing: -0.07em;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1.6rem, 7vw, 3.15rem);
+        font-weight: 750;
+        line-height: 0.98;
+        letter-spacing: -0.05em;
     }
 
     .timer-card {
         flex: 0 0 auto;
-        min-width: 92px;
-        padding: 9px 12px;
-        border-radius: 18px;
-        color: white;
-        text-align: center;
-        background: linear-gradient(135deg, #1f1b3a, #4f46e5);
-        box-shadow: 0 10px 28px rgba(79, 70, 229, 0.28);
+        min-width: 76px;
+        padding: 0;
+        color: var(--ink);
+        text-align: right;
     }
 
     .timer-label {
         display: block;
-        font-size: 0.63rem;
+        color: var(--muted);
+        font-size: 0.6rem;
         font-weight: 800;
         letter-spacing: 0.12em;
         text-transform: uppercase;
-        opacity: 0.72;
+        opacity: 1;
     }
 
     #timer {
         display: block;
         font-variant-numeric: tabular-nums;
-        font-size: 1.08rem;
+        font-size: 1rem;
         font-weight: 900;
     }
 
     .hero {
         display: grid;
         grid-template-columns: minmax(0, 1fr);
-        gap: 16px;
-    }
-
-    .puzzle-card,
-    .clues-card {
-        background: var(--panel);
-        border: 1px solid rgba(255, 255, 255, 0.7);
-        border-radius: 30px;
-        box-shadow: var(--shadow);
-        backdrop-filter: blur(20px);
+        gap: 18px;
     }
 
     .puzzle-card {
-        padding: 14px;
+        padding: 0;
     }
 
     .status-strip {
@@ -141,24 +129,24 @@
         align-items: center;
         justify-content: space-between;
         gap: 10px;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
         color: var(--muted);
-        font-size: 0.86rem;
+        font-size: 0.8rem;
         font-weight: 800;
     }
 
     .status-pill {
-        padding: 8px 10px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.62);
-        border: 1px solid var(--line);
+        padding: 0;
+        border-radius: 0;
+        background: transparent;
+        border: 0;
     }
 
     .grid-wrap {
         display: flex;
         justify-content: center;
         overflow: hidden;
-        padding: 2px;
+        padding: 0;
     }
 
     #grid {
@@ -166,10 +154,10 @@
         grid-template-columns: repeat(var(--cols), var(--cell-size));
         width: max-content;
         background: var(--grid-line);
-        border: 3px solid var(--grid-line);
-        border-radius: 18px;
+        border: 2px solid var(--grid-line);
+        border-radius: 3px;
         overflow: hidden;
-        box-shadow: 0 16px 40px rgba(31, 24, 54, 0.28);
+        box-shadow: 0 1px 0 rgba(47, 42, 31, 0.16);
         touch-action: manipulation;
     }
 
@@ -177,8 +165,8 @@
         position: relative;
         width: var(--cell-size);
         height: var(--cell-size);
-        background: #fffdf8;
-        border: 1px solid rgba(34, 29, 53, 0.34);
+        background: #fbf4e8;
+        border: 1px solid rgba(81, 69, 51, 0.38);
     }
 
     .cell.hidden {
@@ -191,7 +179,7 @@
 
     .cell.current {
         z-index: 2;
-        background: #fff3a3;
+        background: var(--current);
         box-shadow: inset 0 0 0 3px var(--accent-2);
     }
 
@@ -229,7 +217,7 @@
         top: 2px;
         left: 4px;
         z-index: 3;
-        color: rgba(29, 27, 47, 0.66);
+        color: rgba(47, 42, 31, 0.64);
         font-size: max(9px, calc(var(--cell-size) * 0.22));
         font-weight: 900;
         pointer-events: none;
@@ -237,12 +225,11 @@
 
     .active-clue-bar {
         margin-top: 12px;
-        padding: 12px 14px;
-        min-height: 58px;
-        border-radius: 20px;
-        color: white;
-        background: linear-gradient(135deg, #ff6b35, #f43f5e);
-        box-shadow: 0 14px 34px rgba(244, 63, 94, 0.24);
+        padding: 10px 0 10px 12px;
+        min-height: 50px;
+        border-left: 4px solid var(--accent);
+        color: var(--ink);
+        background: rgba(232, 208, 157, 0.35);
         font-weight: 850;
         line-height: 1.3;
     }
@@ -253,11 +240,12 @@
         font-size: 0.66rem;
         letter-spacing: 0.12em;
         text-transform: uppercase;
-        opacity: 0.78;
+        color: var(--accent);
+        opacity: 1;
     }
 
     .clues-card {
-        padding: 16px;
+        padding: 0;
     }
 
     .clues-header {
@@ -265,38 +253,39 @@
         align-items: center;
         justify-content: space-between;
         gap: 12px;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
     }
 
     .clues-header h2 {
         margin: 0;
-        font-size: 1.1rem;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 1.22rem;
         letter-spacing: -0.03em;
     }
 
     .clue-tabs {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 8px;
-        padding: 4px;
-        margin-bottom: 14px;
-        border-radius: 999px;
-        background: rgba(31, 27, 58, 0.08);
+        gap: 10px;
+        padding: 0 0 10px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid var(--line);
+        background: transparent;
     }
 
     .clue-tab {
         min-height: 42px;
         border: 0;
-        border-radius: 999px;
+        border-radius: 0;
         color: var(--muted);
         background: transparent;
         font-weight: 900;
     }
 
     .clue-tab.active {
-        color: white;
-        background: var(--ink);
-        box-shadow: 0 8px 24px rgba(31, 27, 58, 0.18);
+        color: var(--accent);
+        background: transparent;
+        box-shadow: inset 0 -3px 0 var(--accent);
     }
 
     .clue-section {
@@ -317,7 +306,7 @@
 
     #clues ul {
         display: grid;
-        gap: 9px;
+        gap: 0;
         margin: 0;
         padding: 0;
         list-style: none;
@@ -329,10 +318,11 @@
         gap: 10px;
         align-items: start;
         min-height: 48px;
-        padding: 12px;
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        background: rgba(255, 255, 255, 0.72);
+        padding: 11px 0;
+        border: 0;
+        border-bottom: 1px solid var(--line);
+        border-radius: 0;
+        background: transparent;
         line-height: 1.35;
         cursor: pointer;
         transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease, background 0.16s ease;
@@ -344,10 +334,10 @@
     }
 
     #clues li.active {
-        color: white;
-        border-color: transparent;
-        background: linear-gradient(135deg, #1f1b3a, #4f46e5);
-        box-shadow: 0 14px 34px rgba(79, 70, 229, 0.22);
+        color: var(--ink);
+        border-color: rgba(168, 95, 61, 0.28);
+        background: rgba(232, 208, 157, 0.32);
+        box-shadow: none;
     }
 
     .clue-number {
@@ -357,15 +347,15 @@
         height: 30px;
         padding: 0 7px;
         border-radius: 999px;
-        color: white;
+        color: #f8efe0;
         background: var(--accent);
         font-size: 0.82rem;
         font-weight: 950;
     }
 
     #clues li.active .clue-number {
-        color: var(--ink);
-        background: #f9d976;
+        color: #f8efe0;
+        background: var(--accent-2);
     }
 
     .clue-text {
@@ -374,9 +364,10 @@
 
     .load-error {
         padding: 18px;
-        border-radius: 20px;
-        background: rgba(255, 154, 162, 0.42);
-        color: #661d28;
+        border-left: 4px solid #9c5a49;
+        border-radius: 0;
+        background: rgba(217, 160, 142, 0.24);
+        color: #6c352a;
         font-weight: 850;
     }
 
@@ -387,20 +378,18 @@
         display: grid;
         place-items: center;
         padding: 22px;
-        background: rgba(25, 22, 43, 0.58);
-        backdrop-filter: blur(12px);
+        background: rgba(47, 42, 31, 0.34);
     }
 
     .win-modal {
         width: min(420px, 100%);
         padding: 26px;
-        border-radius: 30px;
-        color: white;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: var(--ink);
         text-align: center;
-        background:
-            radial-gradient(circle at top, rgba(249, 217, 118, 0.38), transparent 13rem),
-            linear-gradient(145deg, #1f1b3a, #4f46e5);
-        box-shadow: 0 28px 90px rgba(0, 0, 0, 0.35);
+        background: #f8efe0;
+        box-shadow: 0 18px 50px rgba(47, 42, 31, 0.18);
         animation: pop-in 0.36s cubic-bezier(.22, 1, .36, 1);
     }
 
@@ -412,7 +401,7 @@
 
     .win-modal p {
         margin: 0 0 18px;
-        color: rgba(255, 255, 255, 0.82);
+        color: var(--muted);
         font-weight: 750;
     }
 
@@ -430,15 +419,15 @@
         padding: 13px 16px;
         border: 0;
         border-radius: 999px;
-        color: var(--ink);
-        background: #f9d976;
+        color: #f8efe0;
+        background: var(--accent);
         text-decoration: none;
         font-weight: 950;
     }
 
     .share-button {
-        color: white;
-        background: rgba(255, 255, 255, 0.16);
+        color: var(--ink);
+        background: rgba(104, 114, 75, 0.18);
     }
 
     @media (min-width: 900px) {
@@ -448,7 +437,7 @@
 
         .topbar {
             margin-bottom: 20px;
-            padding: 16px 18px;
+            padding: 10px 0 14px;
         }
 
         .hero {
@@ -460,11 +449,6 @@
         .puzzle-card {
             position: sticky;
             top: 112px;
-            padding: 20px;
-        }
-
-        .clues-card {
-            padding: 20px;
         }
 
         .clue-tabs {
@@ -488,15 +472,8 @@
             padding-right: 8px;
         }
 
-        .topbar,
-        .puzzle-card,
-        .clues-card {
-            border-radius: 22px;
-        }
-
         .timer-card {
             min-width: 84px;
-            padding: 8px 9px;
         }
     }
 
@@ -569,6 +546,8 @@ let ROWS = 0;
 let COLS = 0;
 let currentDirection = "across";
 let activeClueId = null;
+let selectedCellKey = null;
+let suppressNextCellClick = false;
 let timerStarted = false;
 let startTime = null;
 let timerInterval = null;
@@ -708,6 +687,7 @@ function renderGrid() {
             input.dataset.col = c;
             input.setAttribute("aria-label", `Row ${r + 1}, column ${c + 1}`);
             input.addEventListener("focus", handleCellFocus);
+            input.addEventListener("click", handleCellTap);
             input.addEventListener("input", checkLetter);
             input.addEventListener("keydown", handleCellKeyDown);
             cell.appendChild(input);
@@ -778,10 +758,48 @@ function focusClue(id) {
 function handleCellFocus(event) {
     const r = Number(event.target.dataset.row);
     const c = Number(event.target.dataset.col);
-    const mapped = cellLookup.get(cellKey(r, c));
+    const key = cellKey(r, c);
+    const mapped = cellLookup.get(key);
     if (!mapped) return;
     const nextId = mapped[currentDirection] || mapped.across || mapped.down;
     if (nextId) setActiveClue(nextId, false);
+    selectedCellKey = key;
+    suppressNextCellClick = true;
+    setTimeout(() => {
+        suppressNextCellClick = false;
+    }, 0);
+    highlightCurrentCell(r, c);
+}
+
+function handleCellTap(event) {
+    const r = Number(event.target.dataset.row);
+    const c = Number(event.target.dataset.col);
+    const key = cellKey(r, c);
+
+    if (suppressNextCellClick) {
+        suppressNextCellClick = false;
+        return;
+    }
+
+    if (selectedCellKey === key) {
+        toggleCellDirection(r, c);
+        return;
+    }
+
+    selectedCellKey = key;
+}
+
+function toggleCellDirection(r, c) {
+    const mapped = cellLookup.get(cellKey(r, c));
+    if (!mapped) return;
+
+    if (mapped.across && mapped.down) {
+        const nextDirection = currentDirection === "across" ? "down" : "across";
+        setActiveClue(mapped[nextDirection], false);
+    } else {
+        setActiveClue(mapped.across || mapped.down, false);
+    }
+
     highlightCurrentCell(r, c);
 }
 
