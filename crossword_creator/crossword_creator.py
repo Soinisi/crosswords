@@ -8,8 +8,8 @@ from dotenv import load_dotenv
 from pydantic import BaseModel, Field
 from pydantic_ai import Agent
 from pydantic_ai.models.openai import OpenAIChatModel
-from grid_creator import get_column_words
-from grid_creator import generate_grids
+from .grid_creator import get_column_words
+from .grid_creator import generate_grids
 
 load_dotenv()
 

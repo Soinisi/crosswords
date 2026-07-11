@@ -2,7 +2,7 @@ from pathlib import Path
 import sys
 import json
 from flask import Flask, render_template_string
-from crossword_creator import create_cword_prod_pipe
+from crossword_creator.crossword_creator import create_cword_prod_pipe
 
 if sys.argv[-1] == "prod":
     print("Generating crossword and clues for production...")
@@ -17,7 +17,23 @@ with open(CROSSWORD_JSON_PATH, "r") as f:
     DATA = json.load(f)
 
 
-crossword_index = max(int(key.split("_")[-1]) if key.startswith("crossword_") else -1 for key in DATA.keys())
+crossword_index = max(
+    (int(key.split("_")[-1])
+     for key in DATA.keys()
+     if key.startswith("crossword_") and not key.startswith("used_")),
+    default=-1
+)
+if crossword_index == -1:
+    print("No available crosswords. Generating a fresh one...")
+    create_cword_prod_pipe()
+    with open(CROSSWORD_JSON_PATH, "r") as f:
+        DATA = json.load(f)
+    crossword_index = max(
+        int(key.split("_")[-1])
+        for key in DATA.keys()
+        if key.startswith("crossword_") and not key.startswith("used_")
+    )
+
 CROSSW_INDEX = f"crossword_{crossword_index}"
 
 CLUE_MAP = DATA[CROSSW_INDEX]["clues"]
