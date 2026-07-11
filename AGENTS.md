@@ -1,23 +1,25 @@
 # AGENTS.md
 
 ## Setup
-- Copy `.env` from the repo root and fill in `OPENAI_API_KEY` + `OPENAI_BASE_URL` (remote) or `LLM_BASE_URL` + `LLM_API_KEY` + `LLM_MODEL_NAME` (local llamafile).
-- `pip install -r requirements.txt` (also needs `python-dotenv`, not listed).
-- The app reads `.env` from the cwd (repo root) at import time via `load_dotenv()` in `crossword_creator.py`.
 
-## Package structure
-- Single flat package: `crossword_creator/`. All modules are siblings. No `setup.py`/`pyproject.toml`.
-- Entrypoints: `app.py` (Flask web server), `crossword_creator.py` (CLI grid+clue pipeline), `grid_creator.py` (interactive grid generator).
+- Copy `.env` from the repo root and fill in `OPENAI_API_KEY` + `OPENAI_BASE_URL` for remote OpenAI, or `LLM_BASE_URL` + `LLM_API_KEY` + `LLM_MODEL_NAME` for a local llamafile.
+- `pip install -r requirements.txt` installs Python generation dependencies.
+- `npm install` installs the Node/Vite static-site dev server.
+- The Python generator reads `.env` from the cwd via `load_dotenv()` in `crossword_creator.py`.
+
+## Package Structure
+
+- Single flat Python package: `crossword_creator/`. All modules are siblings. No `setup.py`/`pyproject.toml`.
+- Python is generation-only. The user-facing app is static HTML/CSS/JS in `crossword_creator/site/index.html`.
+- Entrypoints: `crossword_creator.py` (grid+clue pipeline), `grid_creator.py` (interactive grid generator), `npm run dev` (local UI server).
 
 ## Commands
+
 ```bash
-# Dev web server (debug=True, Flask reload)
-python -m crossword_creator.app
+# Local static UI server (Node/Vite)
+npm run dev
 
-# Production: generate crossword + clues, then serve via waitress on 0.0.0.0:5000
-python -m crossword_creator.app prod
-
-# Generate grid + AI clues and write crossword.json (no web server)
+# Generate grid + AI clues and write crossword.json
 python -m crossword_creator.crossword_creator prod
 
 # Generate N crosswords at once (with progress + ETA)
@@ -28,21 +30,27 @@ python -m crossword_creator.crossword_creator --verbose
 
 # Interactive grid generation (prompts for dimensions)
 python -m crossword_creator.grid_creator
+
+# Copy generated data into the static site for local preview
+cp crossword_creator/crossword.json crossword_creator/site/crossword.json
 ```
 
-## Data flow
-1. `wl.txt` — 91K-line word dictionary (all-caps; used as-is).
-2. `grid_creator.py` — backtracking solver with NumPy. Writes raw grids to `crossword_grids.txt` (one `list[str]` per line, Python repr format).
-3. `crossword_creator.py` — reads `crossword_grids.txt`, calls OpenAI (`gpt-4.1`) for clues via `pydantic-ai`, writes `crossword.json`.
-4. `app.py` — reads `crossword.json`, renders interactive HTML crossword, then renames the served key from `crossword_N` to `used_crossword_N` (each crossword served once).
-5. `site/index.html` — standalone static page for Netlify. Fetches `crossword.json`, picks today's crossword by date (`daysSinceEpoch % total`). Same crossword for all users each day.
+## Data Flow
 
-## Key files
+1. `wl.txt` - 91K-line word dictionary (all-caps; used as-is).
+2. `grid_creator.py` - backtracking solver with NumPy. Writes raw grids to `crossword_grids.txt` (one `list[str]` per line, Python repr format).
+3. `crossword_creator.py` - reads `crossword_grids.txt`, calls OpenAI-compatible API for clues via `pydantic-ai`, writes `crossword.json`.
+4. Netlify build - copies `crossword_creator/crossword.json` to `crossword_creator/site/crossword.json`.
+5. `site/index.html` - standalone static app. Fetches `crossword.json`, picks today's crossword by visitor-local date, and changes puzzle at local midnight.
+
+## Key Files
+
 | File | Role |
 |---|---|
-| `crossword.json` | Active crossword data (grids + clues). Mutated by `app.py` on startup. Read by `site/index.html` at runtime. |
+| `crossword.json` | Generated crossword data. Source copied into the static site at deploy time. |
 | `crossword_arc.json` | Archive of older crosswords. Never read at runtime. |
 | `crossword_grids.txt` | Raw generated grids (Python list reprs). Append-only from grid generator. |
-| `netlify.toml` | Netlify deploy config. Publish dir = `crossword_creator/site`. Build command = `python -m crossword_creator.app build`. |
-| `site/index.html` | Standalone crossword SPA for Netlify. Date-based puzzle selection. |
-| `site/crossword.json` | Copy of crossword data for static deployment. Built by `app.py build`. |
+| `site/index.html` | Single UI source of truth. Static mobile-first crossword app. |
+| `site/crossword.json` | Runtime data file for static serving. Copied from `crossword.json`. |
+| `package.json` | Node/Vite local static-site workflow. |
+| `netlify.toml` | Netlify deploy config. Publish dir = `crossword_creator/site`. Build command = `cp crossword_creator/crossword.json crossword_creator/site/crossword.json`. |

@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "dev": "vite crossword_creator/site --host 0.0.0.0",
+    "preview": "vite crossword_creator/site --host 0.0.0.0"
+  },
+  "devDependencies": {
+    "vite": "^7.0.0"
+  }
+}
