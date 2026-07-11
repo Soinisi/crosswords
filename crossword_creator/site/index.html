@@ -547,7 +547,6 @@ let COLS = 0;
 let currentDirection = "across";
 let activeClueId = null;
 let selectedCellKey = null;
-let suppressNextCellClick = false;
 let timerStarted = false;
 let startTime = null;
 let timerInterval = null;
@@ -686,8 +685,8 @@ function renderGrid() {
             input.dataset.row = r;
             input.dataset.col = c;
             input.setAttribute("aria-label", `Row ${r + 1}, column ${c + 1}`);
+            input.addEventListener("pointerdown", handleCellPointerDown);
             input.addEventListener("focus", handleCellFocus);
-            input.addEventListener("click", handleCellTap);
             input.addEventListener("input", checkLetter);
             input.addEventListener("keydown", handleCellKeyDown);
             cell.appendChild(input);
@@ -764,29 +763,31 @@ function handleCellFocus(event) {
     const nextId = mapped[currentDirection] || mapped.across || mapped.down;
     if (nextId) setActiveClue(nextId, false);
     selectedCellKey = key;
-    suppressNextCellClick = true;
-    setTimeout(() => {
-        suppressNextCellClick = false;
-    }, 0);
     highlightCurrentCell(r, c);
+    selectWholeCell(event.target);
 }
 
-function handleCellTap(event) {
-    const r = Number(event.target.dataset.row);
-    const c = Number(event.target.dataset.col);
+function handleCellPointerDown(event) {
+    event.preventDefault();
+
+    const input = event.currentTarget;
+    const r = Number(input.dataset.row);
+    const c = Number(input.dataset.col);
     const key = cellKey(r, c);
+    const alreadySelected = selectedCellKey === key && document.activeElement === input;
 
-    if (suppressNextCellClick) {
-        suppressNextCellClick = false;
-        return;
-    }
-
-    if (selectedCellKey === key) {
+    input.focus({ preventScroll: true });
+    if (alreadySelected) {
         toggleCellDirection(r, c);
-        return;
+    } else {
+        const mapped = cellLookup.get(key);
+        const nextId = mapped?.[currentDirection] || mapped?.across || mapped?.down;
+        if (nextId) setActiveClue(nextId, false);
+        selectedCellKey = key;
+        highlightCurrentCell(r, c);
     }
 
-    selectedCellKey = key;
+    selectWholeCell(input);
 }
 
 function toggleCellDirection(r, c) {
@@ -866,7 +867,7 @@ function checkLetter(event) {
     const input = event.target;
     const r = Number(input.dataset.row);
     const c = Number(input.dataset.col);
-    const val = input.value.toUpperCase().replace(/[^A-Z]/g, "").slice(0, 1);
+    const val = getSingleLetter(input.value);
 
     input.value = val;
     if (!timerStarted && /^[A-Z]$/.test(val)) startTimer();
@@ -923,7 +924,21 @@ function focusInput(r, c) {
     const input = getInput(r, c);
     if (!input) return;
     input.focus({ preventScroll: true });
-    input.select();
+    selectWholeCell(input);
+}
+
+function selectWholeCell(input) {
+    const select = () => {
+        input.setSelectionRange(0, input.value.length);
+    };
+
+    select();
+    requestAnimationFrame(select);
+}
+
+function getSingleLetter(value) {
+    const letters = value.toUpperCase().replace(/[^A-Z]/g, "");
+    return letters.slice(-1);
 }
 
 function getCell(r, c) {
