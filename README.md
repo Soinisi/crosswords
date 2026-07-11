@@ -7,13 +7,33 @@ Generates crossword grids from a 91K-word dictionary, produces AI-powered clues 
 ```bash
 # 1. Install dependencies
 pip install -r requirements.txt python-dotenv
+```
 
-# 2. Create .env in the repo root
+Create `.env` in the repo root. Use **either** remote OpenAI **or** a local llamafile (see below).
+
+```bash
+# Remote OpenAI (cloud)
 echo 'OPENAI_API_KEY=your-key-here' > .env
 echo 'OPENAI_BASE_URL=https://api.openai.com/v1' >> .env
 ```
 
 The `.env` is loaded at import time from the current working directory (repo root) by `load_dotenv()` in `crossword_creator.py`.
+
+### Remote OpenAI (cloud)
+Set `OPENAI_API_KEY` and optionally `OPENAI_BASE_URL` in `.env`. The default model is `gpt-4.1`.
+
+### Local model (offline testing)
+Start a llamafile in a separate terminal:
+```bash
+/home/simo/projects/ai/llm_models/Qwen3.5-4B-Q5_K_S.llamafile
+```
+Then in `.env`:
+```bash
+LLM_BASE_URL=http://localhost:8080/v1
+LLM_API_KEY=not-needed
+LLM_MODEL_NAME=local
+```
+The llamafile serves an OpenAI-compatible HTTP API on `localhost:8080` — no API key required. Omit all `LLM_*` vars to use remote OpenAI as before.
 
 ## Quick start
 
@@ -37,7 +57,8 @@ python -m crossword_creator.app
 
 | Command | Description |
 |---|---|
-| `python -m crossword_creator.crossword_creator prod` | Generate grid + AI clues and write `crossword.json` |
+| `python -m crossword_creator.crossword_creator prod` | Generate 1 grid + AI clues and write `crossword.json` |
+| `python -m crossword_creator.crossword_creator prod 10` | Generate 10 crosswords at once |
 | `python -m crossword_creator.crossword_creator --verbose` | Same with debug-level logging |
 
 ### Interactive grid generation
@@ -57,7 +78,7 @@ python -m crossword_creator.grid_creator
               │
       crossword_grids.txt    ← raw grids (Python repr format)
               │
-     crossword_creator.py    ← OpenAI gpt-4.1 via pydantic-ai
+     crossword_creator.py    ← LLM via pydantic-ai (OpenAI / local llamafile)
               │
         crossword.json       ← grids + clues
               │
@@ -85,4 +106,10 @@ python -m crossword_creator.grid_creator
 
 ## Model
 
-Clue generation uses `gpt-4.1` via `pydantic-ai`. To change the model, edit `crossword_creator.py:19`.
+| Env var | Default | Purpose |
+|---|---|---|
+| `LLM_MODEL_NAME` | `gpt-4.1` | Model name sent to the endpoint |
+| `LLM_BASE_URL` | `OPENAI_BASE_URL` | API base URL |
+| `LLM_API_KEY` | `OPENAI_API_KEY` | API key |
+
+Set `LLM_*` vars to override for local models. Unset them to use the OpenAI cloud defaults.

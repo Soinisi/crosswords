@@ -1,7 +1,7 @@
 # AGENTS.md
 
 ## Setup
-- Copy `.env` from the repo root and fill in `OPENAI_API_KEY` + `OPENAI_BASE_URL`.
+- Copy `.env` from the repo root and fill in `OPENAI_API_KEY` + `OPENAI_BASE_URL` (remote) or `LLM_BASE_URL` + `LLM_API_KEY` + `LLM_MODEL_NAME` (local llamafile).
 - `pip install -r requirements.txt` (also needs `python-dotenv`, not listed).
 - The app reads `.env` from the cwd (repo root) at import time via `load_dotenv()` in `crossword_creator.py`.
 
@@ -19,6 +19,9 @@ python -m crossword_creator.app prod
 
 # Generate grid + AI clues and write crossword.json (no web server)
 python -m crossword_creator.crossword_creator prod
+
+# Generate N crosswords at once
+python -m crossword_creator.crossword_creator prod 10
 
 # Same with debug logging
 python -m crossword_creator.crossword_creator --verbose

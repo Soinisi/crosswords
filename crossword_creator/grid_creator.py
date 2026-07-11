@@ -283,20 +283,20 @@ def user_inputs_loop():
 
 
 def generate_grids(row_min, row_max, col_min, col_max, num_grids, write_mode="a"):
-    for _ in range(num_grids):
-        grid = solve_random_interval(row_min, row_max, col_min, col_max, path=WORD_LIST_FILEPATH)
-        if grid is not None:
-            logger.debug("Solution found:")
-            for row in grid:
-                logger.debug(row)
-            column_words = get_column_words(grid)
-            logger.debug("Column words:")
-            for col_word in column_words:
-                logger.debug(col_word)
-            with open(GRID_FILEPATH, write_mode, encoding="utf-8") as f:
+    with open(GRID_FILEPATH, write_mode, encoding="utf-8") as f:
+        for _ in range(num_grids):
+            grid = solve_random_interval(row_min, row_max, col_min, col_max, path=WORD_LIST_FILEPATH)
+            if grid is not None:
+                logger.debug("Solution found:")
+                for row in grid:
+                    logger.debug(row)
+                column_words = get_column_words(grid)
+                logger.debug("Column words:")
+                for col_word in column_words:
+                    logger.debug(col_word)
                 f.write(str(grid) + "\n")
-        else:
-            logger.debug("No solution found.")
+            else:
+                logger.debug("No solution found.")
 
 
 def user_input_generate_grids():
