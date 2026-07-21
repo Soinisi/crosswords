@@ -8,7 +8,9 @@ import sys
 from typing import Dict
 from dotenv import load_dotenv
 from pydantic import BaseModel, Field
+from pydantic import ValidationError
 from pydantic_ai import Agent
+from pydantic_ai.exceptions import ModelAPIError
 from pydantic_ai.models.openai import OpenAIChatModel
 from .grid_creator import get_column_words
 from .grid_creator import generate_grids
@@ -41,6 +43,7 @@ agent = Agent(
         "creative and challenging clues for each word. "
         "Ensure the clues are concise and suitable for a crossword puzzle. "
         "Given words are all real english words. Do not try to correct or change them.\n\n"
+        "Clues should not use the word itself or any part of the word in the clue. "
         "You MUST output a JSON object with a top-level key 'clues'. "
         "It must be a dictionary mapping words to clues. "
         "Output JSON only. DO NOT include ```json``` markdown formatting. "
@@ -65,52 +68,61 @@ def read_last_grid():
     return last_grid + column_words
 
 
-def read_all_grids():
-    # Read all generated grids from file
-    with open(GRID_FILEPATH, "r") as f:
-        lines = f.readlines()
-        grids = [literal_eval(line.strip()) for line in lines]
-    return grids
+def stream_generate_crosswords():
+    with open(GRID_FILEPATH, "r") as gf:
+        total = sum(1 for _ in gf)
 
+    if total == 0:
+        print("No grids found in crossword_grids.txt")
+        return
 
-def generate_all_crosswords(grids):
     t0 = time.time()
-    words_grids = [(grid + get_column_words(grid), grid) for grid in grids]
-    results = []
-    for i, wg in enumerate(words_grids):
-        clues = generate_clues(wg[0])
-        results.append((clues, wg[1]))
-        elapsed = time.time() - t0
-        eta = (elapsed / (i + 1)) * (len(grids) - i - 1) if i > 0 else 0
-        print(f"  Clues {i + 1}/{len(grids)} — {elapsed:.1f}s elapsed, ~{eta:.0f}s remaining", flush=True)
-    print(f"Clues done: {len(grids)}/{len(grids)} in {time.time() - t0:.1f}s")
-    return results
+    with open(GRID_FILEPATH, "r") as gf, open(CROSSWORDS_FILEPATH, "w") as cf:
+        cf.write("{\n")
+        for i, line in enumerate(gf):
+            grid = literal_eval(line.strip())
+            words = grid + get_column_words(grid)
+            clues = generate_clues(words)
+            inner = json.dumps({"clues": clues, "grid": grid}, indent=4)
+            cf.write(f'    "crossword_{i}": {inner.replace("\n", "\n    ")}')
+            if i < total - 1:
+                cf.write(",")
+            cf.write("\n")
+            cf.flush()
+            elapsed = time.time() - t0
+            eta = (elapsed / (i + 1)) * (total - i - 1) if i > 0 else 0
+            print(f"  Clues {i + 1}/{total} — {elapsed:.1f}s elapsed, ~{eta:.0f}s remaining", flush=True)
+        cf.write("}\n")
+    print(f"Clues done: {total}/{total} in {time.time() - t0:.1f}s")
+
+
+RETRIES = 3
 
 
 def generate_clues(crossword_words):
     logger.debug("Generating clues for words: %s", crossword_words)
-    result = agent.run_sync(f"Generate clues for the following words: {crossword_words}")
-    clues = ClueOutput.model_validate_json(result.output).clues
-
-    logger.debug("Generated clues: %s", clues)
-    return clues
-
-
-def write_crosswords_to_json(crosswords):
-    clues_combined = {}
-    for i, cw in enumerate(crosswords):
-        clues_combined[f"crossword_{i}"] = {"clues": cw[0], "grid": cw[1]}
-    with open(CROSSWORDS_FILEPATH, "w") as f:
-        json.dump(clues_combined, f, indent=4)
+    prompt = f"Generate clues for the following words: {crossword_words}"
+    last_error = None
+    for attempt in range(1, RETRIES + 1):
+        try:
+            result = agent.run_sync(prompt)
+            clues = ClueOutput.model_validate_json(result.output).clues
+            logger.debug("Generated clues: %s", clues)
+            return clues
+        except (ValidationError, ModelAPIError) as e:
+            last_error = e
+            if attempt < RETRIES:
+                delay = 2**attempt
+                print(f"  Retry {attempt}/{RETRIES} — {type(e).__name__}: {e} — waiting {delay}s", flush=True)
+                time.sleep(delay)
+    raise last_error
 
 
 def create_cword_prod_pipe(num_grids=1):
     print(f"Phase 1/2: Generating {num_grids} grid(s)...")
     generate_grids(row_min=6, row_max=8, col_min=4, col_max=5, num_grids=num_grids, write_mode="w")
-    grid = read_all_grids()
-    print(f"\nPhase 2/2: Generating clues for {len(grid)} crossword(s)...")
-    crossword = generate_all_crosswords(grid)
-    write_crosswords_to_json(crossword)
+    print(f"\nPhase 2/2: Generating clues...")
+    stream_generate_crosswords()
 
 
 if __name__ == "__main__":
@@ -121,9 +133,5 @@ if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "prod":
         count = int(sys.argv[2]) if len(sys.argv) > 2 else 1
         generate_grids(row_min=6, row_max=8, col_min=4, col_max=5, num_grids=count, write_mode="w")
-    grids = read_all_grids()
-    if len(grids) > 1:
-        print(f"\nGenerating clues for {len(grids)} crossword(s)...")
-    crosswords = generate_all_crosswords(grids)
-    write_crosswords_to_json(crosswords)
-    print(f"\nDone. {len(grids)} crossword(s) in {time.time() - t_total:.1f}s total")
+    stream_generate_crosswords()
+    print(f"\nDone. in {time.time() - t_total:.1f}s total")
