@@ -12,7 +12,8 @@ pip install -r requirements.txt
 npm install
 ```
 
-Create `.env` in the repo root. Use either remote OpenAI or a local llamafile.
+Create `.env` in the repo root. Use either remote OpenAI or a local llamafile; the opencode
+CLI path below needs no keys.
 
 ```bash
 # Remote OpenAI
@@ -29,19 +30,11 @@ opencode login and model account. No `OPENAI_API_KEY` is needed:
 
 ```bash
 CLUE_PROVIDER=opencode
-# optional, this is the default:
-OPENCODE_MODEL=opencode-go/deepseek-v4-pro
 ```
 
 `CLUE_PROVIDER` defaults to `openai`, so the pydantic-ai/OpenAI path above stays the
-default and is unaffected. The opencode path runs
-`opencode run --model "$OPENCODE_MODEL" "<prompt>"` as your normal user, inheriting your
-opencode authentication, and parses the model's JSON output into the same
-`{"clues": {word: clue}}` shape the OpenAI path produces.
-
-`OPENCODE_TIMEOUT` (seconds, default `900`) bounds a single `opencode run` call. The
-`LLM_*`/`OPENAI_*` settings are ignored when `CLUE_PROVIDER=opencode`, so no OpenAI key is
-needed on that path.
+default and is unaffected. The `LLM_*`/`OPENAI_*` settings are ignored on the opencode
+path. See [Clue Providers](#clue-providers) for the opencode settings and defaults.
 
 ### Local Model
 
@@ -178,9 +171,6 @@ Python:
 | `numpy` | Fast array-based word matching in the grid solver. |
 | `python-dotenv` | Loads `.env`. |
 
-Install `requirements-dev.txt` (which includes `requirements.txt` plus `pytest`) to run the
-tests.
-
 Node:
 
 | Dependency | Purpose |
@@ -195,9 +185,10 @@ Node:
 | `OPENCODE_MODEL` | `opencode-go/deepseek-v4-pro` | Model for `opencode run --model`. |
 | `OPENCODE_TIMEOUT` | `900` | Seconds allowed for one `opencode run` call. |
 
-The opencode path needs no API key: it runs as the current user and inherits the normal
-opencode authentication. Both providers produce the same `{"clues": {word: clue}}` data, so
-`crossword.json` is identical in shape either way.
+The opencode path needs no API key: it runs
+`opencode run --model "$OPENCODE_MODEL" "<prompt>"` as your normal user, inheriting your
+opencode authentication, and parses the model's JSON output. Both providers produce the
+same `{"clues": {word: clue}}` data, so `crossword.json` is identical in shape either way.
 
 ## Model
 
