@@ -1,1120 +1,221 @@
 {
     "crossword_0": {
         "clues": {
-            "explored": "Investigated an unfamiliar place",
-            "deludes": "Misleads someone with false hopes",
-            "inured": "Hardened by repeated exposure",
-            "timely": "Punctual and well chosen",
-            "hassle": "A vexing nuisance",
-            "edith": "Novelist Wharton, for example",
-            "xenia": "Greek concept of hospitality to strangers",
-            "plums": "Stone fruits often made into preserves",
-            "lures": "Tempts with an enticing bait",
-            "odell": "Football star Beckham",
-            "redye": "Color again, perhaps faded fabric",
-            "es": "Plural name for a certain letter"
+            "foundry": "Metal-casting workshop",
+            "apnoea": "Temporary pause in breathing",
+            "reined": "Held back, as a horse",
+            "enters": "Steps inside",
+            "fare": "Cost of a ride",
+            "open": "Not shut",
+            "unit": "Standard measure",
+            "none": "Not any",
+            "deer": "Antlered woodland animal",
+            "rads": "Units of absorbed dose"
         },
         "grid": [
-            "explored",
-            "deludes",
-            "inured",
-            "timely",
-            "hassle"
+            "foundry",
+            "apnoea",
+            "reined",
+            "enters"
         ]
     },
     "crossword_1": {
         "clues": {
-            "lonesome": "Solitary and forlorn",
-            "overages": "Excess amounts beyond the limit",
-            "seville": "Andalusian city famed for flamenco and oranges",
-            "erected": "Raised, as a monument",
-            "strays": "Wanders off course",
-            "loses": "Fails to retain",
-            "overt": "Unconcealed and unmistakable",
-            "never": "At no point in time",
-            "erica": "Botanical genus that includes heather",
-            "salty": "Briny, like seawater",
-            "ogles": "Gazes at with obvious desire",
-            "meed": "Reward for worthy service",
-            "es": "Plural form of the fifth letter"
+            "deadlier": "More lethal",
+            "regions": "Geographic areas",
+            "orange": "Citrus fruit used in marmalade",
+            "linear": "Not curved or branched",
+            "learnt": "Gained knowledge",
+            "droll": "Wryly amusing",
+            "eerie": "Strangely unsettling",
+            "agana": "Guam's capital, formerly",
+            "diner": "Casual eatery",
+            "logan": "Wolverine's alias",
+            "inert": "Chemically inactive",
+            "es": "Spanish for 'is'"
         },
         "grid": [
-            "lonesome",
-            "overages",
-            "seville",
-            "erected",
-            "strays"
+            "deadlier",
+            "regions",
+            "orange",
+            "linear",
+            "learnt"
         ]
     },
     "crossword_2": {
         "clues": {
-            "anapests": "Poetic feet with two light beats before a strong one",
-            "galilee": "Northern Israel's freshwater lake",
-            "ameslan": "Manual communication system used in many Deaf communities",
-            "recast": "Give a new role to, perhaps",
-            "agar": "Seaweed-based substance used in laboratories and desserts",
-            "name": "Word by which a person is known",
-            "alec": "Baldwin brother's first name",
-            "pisa": "Tuscan city famous for a tilted bell tower",
-            "ells": "Old-fashioned measuring units, each 45 inches long",
-            "seat": "Place where one sits",
-            "ten": "A perfect pair of hands"
+            "cantonal": "Relating to a Swiss administrative district",
+            "overlong": "Running past the expected duration",
+            "rivalry": "Contest between long-standing adversaries",
+            "alicia": "Singer Keys",
+            "lasted": "Endured over time",
+            "coral": "Reef-building marine organism",
+            "avila": "Spanish city known for its medieval walls",
+            "nevis": "Caribbean isle paired with St. Kitts",
+            "tract": "Pamphlet or expanse of land",
+            "ollie": "Basic skateboard jump",
+            "norad": "Command that tracks Santa's flight each Christmas",
+            "any": "One or more, no matter which",
+            "lg": "Korean electronics brand"
         },
         "grid": [
-            "anapests",
-            "galilee",
-            "ameslan",
-            "recast"
+            "cantonal",
+            "overlong",
+            "rivalry",
+            "alicia",
+            "lasted"
         ]
     },
     "crossword_3": {
         "clues": {
-            "planters": "Those who sow, or their containers",
-            "recurred": "Happened once more",
-            "eliding": "Dropping a sound in rapid speech",
-            "singes": "Scorches slightly",
-            "sagest": "Wisest of the bunch",
-            "press": "Newspaper industry",
-            "lelia": "Feminine given name",
-            "acing": "Doing exceptionally well",
-            "nudge": "Slight push",
-            "tries": "Makes attempts",
-            "ernst": "Max of surrealism",
-            "reg": "Nickname for Reginald",
-            "sd": "Postal abbreviation for a Plains state"
+            "improves": "Makes better",
+            "maserati": "Italian luxury sports car brand",
+            "acidic": "Having a low pH",
+            "mesons": "Subatomic particles made of quark-antiquark pairs",
+            "imam": "Muslim prayer leader",
+            "mace": "Spice from nutmeg's outer husk",
+            "psis": "Greek letters shaped like tridents",
+            "redo": "Start over",
+            "orin": "River in southwestern France",
+            "vacs": "Hoovers, informally",
+            "et": "And, in Latin",
+            "si": "Yes, in Spanish"
         },
         "grid": [
-            "planters",
-            "recurred",
-            "eliding",
-            "singes",
-            "sagest"
+            "improves",
+            "maserati",
+            "acidic",
+            "mesons"
         ]
     },
     "crossword_4": {
         "clues": {
-            "mariadb": "Open-source relational information system",
-            "orioles": "Baltimore baseball birds",
-            "sultana": "Dried seedless grape",
-            "smears": "Defames or spreads thickly",
-            "moss": "Low-growing green plant",
-            "arum": "Calla lily relative",
-            "rile": "Anger",
-            "iota": "Tiny quantity",
-            "alar": "Pertaining to a wing",
-            "dens": "Animal shelters",
-            "bsa": "U.S. youth organization, initially"
+            "plumber": "One who fixes leaky pipes",
+            "lasers": "Beams used in barcode scanners",
+            "unsnap": "Release a fastened button or catch",
+            "garden": "Plot for growing vegetables and flowers",
+            "plug": "Stopper for a drain or socket",
+            "lana": "Actress Del Rey of music fame",
+            "ussr": "Cold War superpower, in brief",
+            "mend": "Repair, as a torn shirt",
+            "brae": "Scottish hillside or slope",
+            "espn": "Sports network with a famous '30 for 30' series"
         },
         "grid": [
-            "mariadb",
-            "orioles",
-            "sultana",
-            "smears"
+            "plumber",
+            "lasers",
+            "unsnap",
+            "garden"
         ]
     },
     "crossword_5": {
         "clues": {
-            "footsore": "Weary after a long trek",
-            "israelis": "Citizens of a Middle Eastern nation",
-            "albumen": "Egg-white protein",
-            "tossing": "Turning repeatedly in bed",
-            "fiat": "Decree issued by authority",
-            "oslo": "Norway's capital",
-            "orbs": "Spheres in the heavens",
-            "taus": "Greek letters shaped like crosses",
-            "semi": "Half of a whole, informally",
-            "olen": "Belgian municipality in Antwerp Province",
-            "ring": "Jewelry worn on a finger",
-            "es": "Plural designation for a letter"
+            "embosses": "Raises a design in relief",
+            "salutes": "Honors with a raised hand",
+            "placate": "Soothe or appease",
+            "nights": "Dark periods between sunsets",
+            "espn": "Sports network with 'SportsCenter'",
+            "mali": "West African nation once home to Timbuktu",
+            "blag": "To obtain by smooth talk, in British slang",
+            "ouch": "Cry of sudden pain",
+            "stat": "Immediately, in medical jargon",
+            "sets": "Units in a tennis match",
+            "ese": "Suffix for Chinese or Japanese"
         },
         "grid": [
-            "footsore",
-            "israelis",
-            "albumen",
-            "tossing"
+            "embosses",
+            "salutes",
+            "placate",
+            "nights"
         ]
     },
     "crossword_6": {
         "clues": {
-            "zedekiah": "Biblical ruler who lost Jerusalem to Babylon",
-            "ambling": "Moving at an unhurried pace",
-            "rumble": "Deep, rolling sound",
-            "assets": "Valuable holdings on a balance sheet",
-            "zara": "Spanish-founded fast-fashion chain",
-            "emus": "Flightless Australian birds",
-            "dbms": "Software for organizing and querying stored information",
-            "elbe": "River flowing through Dresden and Hamburg",
-            "kilt": "Traditional Scottish wraparound garment",
-            "ines": "Spanish actress ___ Sastre",
-            "ag": "Chemical symbol for silver"
+            "smudging": "Ritual of burning sage to cleanse a space",
+            "convenor": "One who calls a gathering together",
+            "unbinds": "Sets free from restraints",
+            "deanery": "Residence of a cathedral official",
+            "strata": "Layers of sedimentary rock",
+            "scuds": "Races, as low clouds",
+            "monet": "French Impressionist famed for water lilies",
+            "unbar": "Remove an obstruction from a doorway",
+            "dvina": "Northern Russian river",
+            "genet": "Spotted catlike mammal of Africa",
+            "indra": "Hindu deity of thunder and war",
+            "nosy": "Prying into others' business",
+            "gr": "Unit of weight: Abbr."
         },
         "grid": [
-            "zedekiah",
-            "ambling",
-            "rumble",
-            "assets"
+            "smudging",
+            "convenor",
+            "unbinds",
+            "deanery",
+            "strata"
         ]
     },
     "crossword_7": {
         "clues": {
-            "notelets": "Tiny missives",
-            "academia": "The university sphere",
-            "thriving": "Doing exceptionally well",
-            "copters": "Rotary-wing aircraft, informally",
-            "hashes": "Number signs, online",
-            "natch": "As one might say for \u201cof course\u201d",
-            "ochoa": "Goalkeeper Guillermo of Mexico",
-            "tarps": "Rainproof sheets",
-            "edith": "Piaf\u2019s given name",
-            "levee": "Riverbank flood barrier",
-            "emirs": "Gulf monarchs",
-            "tins": "Metal containers",
-            "sag": "Lose tautness"
+            "varanasi": "Holy Hindu city on the Ganges",
+            "agitated": "Worked up or stirred",
+            "gentile": "One who is not Jewish",
+            "ungava": "Bay in northern Quebec",
+            "stores": "Shops, or keeps for later use",
+            "vagus": "Cranial nerve that slows the heart",
+            "agent": "Secret operative or representative",
+            "ringo": "Drummer Starr of the Beatles",
+            "attar": "Fragrant oil distilled from rose petals",
+            "naive": "Too trusting or unsophisticated",
+            "atlas": "Book of maps, or a Titan holding up the sky",
+            "see": "Perceive with the eyes",
+            "id": "Freud's primal part of the psyche"
         },
         "grid": [
-            "notelets",
-            "academia",
-            "thriving",
-            "copters",
-            "hashes"
+            "varanasi",
+            "agitated",
+            "gentile",
+            "ungava",
+            "stores"
         ]
     },
     "crossword_8": {
         "clues": {
-            "graders": "Those assessing test papers",
-            "numeric": "Expressed using figures",
-            "alissa": "Metal vocalist White-Gluz's given name",
-            "terkel": "Journalist Studs's family name",
-            "gnat": "Tiny biting fly",
-            "rule": "Governing principle",
-            "amir": "Persian Gulf ruler",
-            "desk": "Writing table",
-            "erse": "Old name for the Irish language",
-            "rial": "Iranian currency unit",
-            "sc": "Palmetto State's postal code"
+            "duckier": "More charming, in old slang",
+            "echidna": "Spiny egg-laying mammal",
+            "elided": "Dropped, as a syllable in speech",
+            "pandas": "Black-and-white bamboo eaters",
+            "deep": "Profound",
+            "ucla": "Bruins' school, for short",
+            "chin": "Front of the jaw",
+            "kidd": "Pirate captain William",
+            "idea": "Lightbulb moment",
+            "ends": "Terminal points",
+            "ra": "Egyptian sun god"
         },
         "grid": [
-            "graders",
-            "numeric",
-            "alissa",
-            "terkel"
+            "duckier",
+            "echidna",
+            "elided",
+            "pandas"
         ]
     },
     "crossword_9": {
         "clues": {
-            "electors": "Voters who choose a head of state",
-            "reprises": "Repeated performances",
-            "niceties": "Polite refinements or subtle distinctions",
-            "sloshed": "Very drunk",
-            "tatters": "Rags and worn fragments",
-            "ernst": "German painter Max",
-            "leila": "Arabic feminine name meaning \u201cnight\u201d",
-            "epcot": "Florida attraction featuring global pavilions",
-            "crest": "Top edge or heraldic emblem",
-            "tithe": "Offering of one-tenth",
-            "osier": "Willow used for basketry",
-            "reeds": "Wetland stalks",
-            "sss": "Snake\u2019s sound, tripled"
+            "highrise": "Towering building",
+            "asleep": "Out cold",
+            "alumna": "Female graduate",
+            "seeped": "Oozed slowly",
+            "haas": "Green avocado variety",
+            "isle": "Land surrounded by water",
+            "glue": "Sticky adhesive",
+            "hemp": "Rope fiber",
+            "rene": "Magritte or Descartes",
+            "ipad": "Apple tablet"
         },
         "grid": [
-            "electors",
-            "reprises",
-            "niceties",
-            "sloshed",
-            "tatters"
-        ]
-    },
-    "crossword_10": {
-        "clues": {
-            "taverns": "Roadside drinking houses",
-            "overeat": "Consume excessively",
-            "garrote": "Killing cord tightened by twisting",
-            "assert": "State firmly",
-            "stodgy": "Dull, heavy, and old-fashioned",
-            "togas": "Classical robes",
-            "avast": "Maritime order to stop",
-            "verso": "Left-hand page of an open book",
-            "erred": "Made a mistake",
-            "reorg": "Corporate reshuffling, informally",
-            "natty": "Smartly dressed",
-            "ste": "Map label for a road"
-        },
-        "grid": [
-            "taverns",
-            "overeat",
-            "garrote",
-            "assert",
-            "stodgy"
-        ]
-    },
-    "crossword_11": {
-        "clues": {
-            "pebbling": "Decorating with tiny rounded stones",
-            "overact": "Emote far too theatrically",
-            "dilate": "Make wider or more spacious",
-            "slates": "Lists of candidates or thin roofing pieces",
-            "pods": "Seed cases or spacecraft cabins",
-            "evil": "Moral wrong or wickedness",
-            "bela": "Lugosi's given name",
-            "brat": "Ill-mannered youngster",
-            "late": "Not punctual",
-            "ices": "Chills drinks or decorates cakes",
-            "nt": "Biblical collection following the earlier covenant, briefly"
-        },
-        "grid": [
-            "pebbling",
-            "overact",
-            "dilate",
-            "slates"
-        ]
-    },
-    "crossword_12": {
-        "clues": {
-            "acquits": "Finds blameless in court",
-            "rourke": "Actor Mickey, star of The Wrestler",
-            "imagos": "Mature forms of insects",
-            "doyens": "Respected senior members of a field",
-            "arid": "Lacking rainfall",
-            "como": "Italian lake near Milan",
-            "quay": "Dockside platform for vessels",
-            "urge": "Press strongly; impel",
-            "ikon": "Sacred painted image",
-            "tess": "Hardy heroine with a tragic fate"
-        },
-        "grid": [
-            "acquits",
-            "rourke",
-            "imagos",
-            "doyens"
-        ]
-    },
-    "crossword_13": {
-        "clues": {
-            "bestiary": "Illustrated compendium of animals",
-            "antonia": "Prairie heroine in a Willa Cather novel",
-            "guitar": "Six-stringed musical instrument",
-            "greene": "Surname of Graham or Lorne",
-            "yessed": "Responded affirmatively",
-            "baggy": "Loose-fitting, as clothing",
-            "enure": "Have a beneficial effect",
-            "sties": "Swine shelters",
-            "totes": "Carries, casually",
-            "inane": "Lacking sense or substance",
-            "aired": "Broadcast",
-            "ra": "Egyptian deity of the sun"
-        },
-        "grid": [
-            "bestiary",
-            "antonia",
-            "guitar",
-            "greene",
-            "yessed"
-        ]
-    },
-    "crossword_14": {
-        "clues": {
-            "mutineer": "Rebel aboard a vessel",
-            "anatomy": "Study of bodily structure",
-            "picante": "Spicy, in Spanish",
-            "stoles": "Wraps worn over formal gowns",
-            "maps": "They chart terrain",
-            "unit": "Single component of a larger whole",
-            "taco": "Crisp shell with seasoned filling",
-            "ital": "Jamaican plant-based fare",
-            "none": "Zero items",
-            "emts": "First responders with emergency training",
-            "eye": "Organ of sight"
-        },
-        "grid": [
-            "mutineer",
-            "anatomy",
-            "picante",
-            "stoles"
-        ]
-    },
-    "crossword_15": {
-        "clues": {
-            "ratbags": "Miscreants, in colloquial speech",
-            "utrillo": "French artist known for Paris streetscapes",
-            "rookies": "Beginners on a team",
-            "antenna": "Device that sends or receives radio waves",
-            "lessen": "Reduce",
-            "rural": "Of the countryside",
-            "atone": "Make amends for wrongdoing",
-            "trots": "Moves like a horse at a moderate pace",
-            "bikes": "Two-wheelers",
-            "aline": "Arrange side by side",
-            "glenn": "Actor Ford or Close",
-            "sosa": "Sammy, baseball home-run hitter"
-        },
-        "grid": [
-            "ratbags",
-            "utrillo",
-            "rookies",
-            "antenna",
-            "lessen"
-        ]
-    },
-    "crossword_16": {
-        "clues": {
-            "unveiled": "Made public for the first time",
-            "viennese": "From an Austrian city famed for waltzes",
-            "ungulate": "Hoofed creature",
-            "leered": "Gave a sly, lascivious look",
-            "assets": "Valuables owned",
-            "uvula": "Tiny pendulum in the throat",
-            "nines": "Baseball teams, informally",
-            "veges": "Greens, casually",
-            "enure": "Accustom, as to hardship",
-            "inlet": "Narrow arm of the sea",
-            "leads": "Directs or guides",
-            "est": "Latin verb meaning \u201cis\u201d",
-            "dee": "Letter after C"
-        },
-        "grid": [
-            "unveiled",
-            "viennese",
-            "ungulate",
-            "leered",
-            "assets"
-        ]
-    },
-    "crossword_17": {
-        "clues": {
-            "unevenly": "In a lopsided fashion",
-            "tolerate": "Put up with",
-            "assess": "Judge the worth of",
-            "hearth": "Fireplace's central area",
-            "utah": "Beehive State",
-            "nose": "Facial feature for smelling",
-            "elsa": "Ice queen in Frozen",
-            "veer": "Swerve from a course",
-            "erst": "In former times",
-            "nash": "Tennessee city, informally",
-            "lt": "Rank beneath captain",
-            "ye": "Archaic second-person pronoun"
-        },
-        "grid": [
-            "unevenly",
-            "tolerate",
-            "assess",
-            "hearth"
-        ]
-    },
-    "crossword_18": {
-        "clues": {
-            "peddling": "Hawking merchandise",
-            "sriracha": "Fiery Thai condiment",
-            "innately": "By birth, rather than by training",
-            "sagged": "Became slack and droopy",
-            "psis": "Greek letters shaped like tridents",
-            "erna": "A woman's given name",
-            "ding": "Minor dent from a bump",
-            "drag": "Pull along unwillingly",
-            "late": "Not punctual",
-            "iced": "Chilled, as a beverage",
-            "nhl": "Major professional hockey league",
-            "gay": "Cheerful, in an older sense"
-        },
-        "grid": [
-            "peddling",
-            "sriracha",
-            "innately",
-            "sagged"
-        ]
-    },
-    "crossword_19": {
-        "clues": {
-            "clinker": "Furnace slag fragment",
-            "aurora": "Polar sky display",
-            "bravos": "Audience cheers",
-            "octane": "Gasoline's anti-knock rating",
-            "theses": "Scholarly papers",
-            "cabot": "Italian-born navigator sponsored by England",
-            "lurch": "Sudden, awkward movement",
-            "irate": "Furious",
-            "novas": "Exploding stars",
-            "krone": "Danish monetary unit",
-            "eases": "Relieves or softens"
-        },
-        "grid": [
-            "clinker",
-            "aurora",
-            "bravos",
-            "octane",
-            "theses"
-        ]
-    },
-    "crossword_20": {
-        "clues": {
-            "tinkered": "Adjusted experimentally",
-            "adenauer": "Konrad, postwar chancellor",
-            "morosely": "In a gloomy manner",
-            "slowed": "Decelerated",
-            "tams": "Scottish knitted caps",
-            "idol": "Object of fervent devotion",
-            "nero": "Roman ruler blamed for a great fire",
-            "know": "Be aware of",
-            "ease": "Relieve discomfort",
-            "rued": "Was sorry about",
-            "eel": "Serpentine aquatic creature",
-            "dry": "Without moisture"
-        },
-        "grid": [
-            "tinkered",
-            "adenauer",
-            "morosely",
-            "slowed"
-        ]
-    },
-    "crossword_21": {
-        "clues": {
-            "tinfoil": "Shiny kitchen wrap",
-            "opioid": "Painkiller class with high dependence risk",
-            "tangle": "Mess of intertwined strands",
-            "odessa": "Ukrainian port on the Black Sea",
-            "toto": "Kansas girl's canine companion",
-            "ipad": "Apple tablet computer",
-            "nine": "Three squared",
-            "fogs": "Veils the landscape in gray",
-            "oils": "Applies a slick coating",
-            "idea": "Spark of inspiration"
-        },
-        "grid": [
-            "tinfoil",
-            "opioid",
-            "tangle",
-            "odessa"
-        ]
-    },
-    "crossword_22": {
-        "clues": {
-            "supremos": "Highest-ranking officials",
-            "claimant": "One seeking a title or award",
-            "uncoiled": "Made straight after being spiraled",
-            "rattle": "Baby's noisy toy",
-            "fesses": "Admits guilt, informally",
-            "scurf": "Dry flakes shed by skin",
-            "ulnae": "Forearm bones, anatomically",
-            "pacts": "Agreements between nations",
-            "riots": "Violent public disturbances",
-            "emile": "Zola's first name",
-            "males": "Bucks, bulls, and roosters",
-            "one": "A solitary unit",
-            "std": "Abbreviation for a sexually transmitted infection"
-        },
-        "grid": [
-            "supremos",
-            "claimant",
-            "uncoiled",
-            "rattle",
-            "fesses"
-        ]
-    },
-    "crossword_23": {
-        "clues": {
-            "beautify": "Improve one's appearance",
-            "enclosed": "Surrounded on every side",
-            "trickle": "Move in a thin, slow stream",
-            "honeyed": "Sweetly flattering",
-            "engross": "Capture one's full attention",
-            "bethe": "Nuclear-theory Nobel laureate Hans",
-            "enron": "Defunct energy giant at the center of a scandal",
-            "acing": "Performing flawlessly, slangily",
-            "ulcer": "Painful sore in the stomach lining",
-            "tokyo": "Japan's capital",
-            "isles": "Small islands, poetically",
-            "feeds": "Supplies nourishment to",
-            "yd": "Thirty-six inches, briefly"
-        },
-        "grid": [
-            "beautify",
-            "enclosed",
-            "trickle",
-            "honeyed",
-            "engross"
-        ]
-    },
-    "crossword_24": {
-        "clues": {
-            "hibachis": "Portable charcoal cookers",
-            "another": "A further example",
-            "stooges": "Comic trio or lackeys",
-            "hormel": "Company behind a famous canned luncheon meat",
-            "hash": "Shredded potatoes, often",
-            "into": "Expressing movement within",
-            "boor": "An ill-mannered lout",
-            "atom": "Smallest unit of an element",
-            "chge": "Unusual four-letter sequence",
-            "heel": "Back part of a foot",
-            "irs": "Federal tax collectors, informally"
-        },
-        "grid": [
-            "hibachis",
-            "another",
-            "stooges",
-            "hormel"
-        ]
-    },
-    "crossword_25": {
-        "clues": {
-            "showings": "Movie theater offerings",
-            "cavalier": "Carelessly bold",
-            "uneven": "Not level throughout",
-            "lorene": "Feminine given name",
-            "litres": "Metric measures of capacity",
-            "scull": "Small boat propelled by one oar",
-            "hanoi": "Vietnamese capital",
-            "overt": "Plainly apparent",
-            "waver": "Hesitate between choices",
-            "ilene": "Feminine given name",
-            "nines": "Those following eights",
-            "ge": "Element numbered thirty-two",
-            "sr": "Element numbered thirty-eight"
-        },
-        "grid": [
-            "showings",
-            "cavalier",
-            "uneven",
-            "lorene",
-            "litres"
-        ]
-    },
-    "crossword_26": {
-        "clues": {
-            "stuffily": "In an overly formal, self-important manner",
-            "airliner": "Commercial passenger jet",
-            "cabarets": "Nightclubs offering song and dance",
-            "kramer": "Cosmo's family name on Seinfeld",
-            "sanest": "Most rational of the bunch",
-            "sacks": "Dismisses from employment",
-            "tiara": "Jeweled headpiece",
-            "urban": "Of the city, rather than countryside",
-            "flame": "Passionate admirer, informally",
-            "fires": "Burns brightly",
-            "inert": "Lacking motion or chemical activity",
-            "let": "Permit, as a visitor",
-            "yrs": "Annual periods, in brief"
-        },
-        "grid": [
-            "stuffily",
-            "airliner",
-            "cabarets",
-            "kramer",
-            "sanest"
-        ]
-    },
-    "crossword_27": {
-        "clues": {
-            "portugal": "Iberian nation famous for port wine",
-            "obtuser": "Less pointed, perhaps",
-            "lofted": "Sent skyward",
-            "lemurs": "Madagascar primates with ringed tails",
-            "poll": "Survey of public opinion",
-            "oboe": "Double-reed orchestral instrument",
-            "rtfm": "Advice to those who skip instructions",
-            "tutu": "Ballet dancer's stiff skirt",
-            "user": "One operating a computer or app",
-            "geds": "High-school equivalency credentials",
-            "ar": "Immersive tech initials"
-        },
-        "grid": [
-            "portugal",
-            "obtuser",
-            "lofted",
-            "lemurs"
-        ]
-    },
-    "crossword_28": {
-        "clues": {
-            "trysted": "Met clandestinely, in old-fashioned usage",
-            "hoecake": "Rustic cornmeal flatbread",
-            "astute": "Shrewd and perceptive",
-            "raided": "Plundered during a sudden attack",
-            "thar": "Dialectal word meaning \u201cthere\u201d",
-            "rosa": "Botanical genus containing many garden blooms",
-            "yeti": "Legendary Himalayan creature",
-            "scud": "Low cloud racing before a storm",
-            "tate": "London gallery devoted to modern art",
-            "eked": "Managed to make do, with difficulty",
-            "de": "French preposition meaning \u201cof\u201d"
-        },
-        "grid": [
-            "trysted",
-            "hoecake",
-            "astute",
-            "raided"
-        ]
-    },
-    "crossword_29": {
-        "clues": {
-            "stoppled": "Sealed with a bung",
-            "carriage": "Horse-drawn conveyance",
-            "albanian": "Balkan native or language",
-            "distends": "Swells from internal pressure",
-            "scad": "Small schooling fish",
-            "tali": "Ankle bones, anatomically",
-            "orbs": "Spherical celestial bodies",
-            "prat": "A foolish person",
-            "pine": "Yearn deeply",
-            "lain": "Rested horizontally",
-            "egad": "Victorian cry of surprise",
-            "dens": "Wild-animal shelters"
-        },
-        "grid": [
-            "stoppled",
-            "carriage",
-            "albanian",
-            "distends"
-        ]
-    },
-    "crossword_30": {
-        "clues": {
-            "crossest": "Most irate",
-            "hosteled": "Stayed in inexpensive lodging",
-            "accepted": "Approved or received favorably",
-            "phantom": "Apparition with no tangible form",
-            "tartans": "Plaid fabrics from Scotland",
-            "chapt": "Dry and cracked, as skin",
-            "rocha": "Portuguese word for a rocky outcrop",
-            "oscar": "Academy Award statuette",
-            "stent": "Medical tube that props open a vessel",
-            "septa": "Partitions dividing biological chambers",
-            "elton": "John behind \u201cTiny Dancer\u201d",
-            "seems": "Appears to be",
-            "tdd": "Development approach that starts with tests"
-        },
-        "grid": [
-            "crossest",
-            "hosteled",
-            "accepted",
-            "phantom",
-            "tartans"
-        ]
-    },
-    "crossword_31": {
-        "clues": {
-            "unfurled": "Spread open from a rolled state",
-            "serried": "Closely packed in ranks",
-            "avoided": "Kept clear of",
-            "gunnery": "Artillery practice",
-            "esters": "Fragrant compounds formed from acids and alcohols",
-            "usage": "Accepted manner of employing something",
-            "nevus": "Small pigmented skin mark",
-            "front": "Forward-facing side",
-            "urine": "Liquid waste expelled by the kidneys",
-            "rider": "Horseback traveler",
-            "leers": "Stares suggestively",
-            "eddy": "Whirling current in water or air"
-        },
-        "grid": [
-            "unfurled",
-            "serried",
-            "avoided",
-            "gunnery",
-            "esters"
-        ]
-    },
-    "crossword_32": {
-        "clues": {
-            "hirohito": "Wartime Japanese emperor who announced surrender by radio",
-            "atomised": "Reduced to tiny particles",
-            "metalled": "Provided with a durable roadway surface",
-            "smarted": "Felt pain or resentment",
-            "hams": "Cured pork legs\u2014or actors who overplay",
-            "item": "A single entry in a list",
-            "rota": "Duty schedule for a group",
-            "omar": "Khayyam's given name",
-            "hilt": "Blade's handgrip",
-            "isle": "Small landmass surrounded by water",
-            "teed": "Set up for a drive, perhaps",
-            "odd": "Unusual, or not divisible by two"
-        },
-        "grid": [
-            "hirohito",
-            "atomised",
-            "metalled",
-            "smarted"
-        ]
-    },
-    "crossword_33": {
-        "clues": {
-            "plaguing": "Inflicting persistent trouble",
-            "romancer": "Writer of love stories",
-            "erupted": "Burst forth suddenly",
-            "vireos": "Small songbirds of the New World",
-            "prev": "Earlier, in a timetable",
-            "lori": "Slow-moving primates",
-            "amur": "Asian river forming part of a border",
-            "gape": "Stare in open-mouthed wonder",
-            "unto": "Toward, in old-style usage",
-            "ices": "Freezes, as a pond",
-            "ned": "Kelly, the famed Australian outlaw",
-            "gr": "Tiny metric mass unit, in shorthand"
-        },
-        "grid": [
-            "plaguing",
-            "romancer",
-            "erupted",
-            "vireos"
-        ]
-    },
-    "crossword_34": {
-        "clues": {
-            "woodsier": "More sylvan, comparatively",
-            "indians": "Original inhabitants of the Americas",
-            "steads": "Mounts for riders",
-            "cosset": "Pamper lavishly",
-            "wisc": "Badger State, in brief",
-            "onto": "Touching and above",
-            "odes": "Tributes in verse",
-            "dias": "Raised platforms",
-            "sade": "Singer known for \u201cSmooth Operator\u201d",
-            "inst": "Institute, for short",
-            "es": "Plural ending for certain nouns"
-        },
-        "grid": [
-            "woodsier",
-            "indians",
-            "steads",
-            "cosset"
-        ]
-    },
-    "crossword_35": {
-        "clues": {
-            "doorstep": "Entryway threshold",
-            "unseeing": "Lacking visual awareness",
-            "ceasing": "Coming to an end",
-            "taking": "Capturing or removing",
-            "slates": "Roofing tiles, perhaps",
-            "ducts": "Channels for air or fluid",
-            "oneal": "Basketball legend Shaquille",
-            "osaka": "Japanese city on Honshu",
-            "resit": "Take an exam again",
-            "seine": "River flowing through Paris",
-            "tings": "Small chimes, perhaps",
-            "eng": "Velar nasal, in phonetics",
-            "pg": "Parental guidance, in ratings"
-        },
-        "grid": [
-            "doorstep",
-            "unseeing",
-            "ceasing",
-            "taking",
-            "slates"
-        ]
-    },
-    "crossword_36": {
-        "clues": {
-            "exegeses": "Interpretations of sacred writings",
-            "minivan": "Compact family vehicle",
-            "macrame": "Decorative art made by knotting cord",
-            "anyone": "A person, no matter who",
-            "emma": "Austen heroine who meddles in matchmaking",
-            "xian": "Chinese city once called Chang'an",
-            "ency": "A being, in archaic usage",
-            "giro": "Italian cycling race",
-            "evan": "Welsh masculine given name",
-            "same": "Identical",
-            "ene": "Unsaturated compound in chemistry"
-        },
-        "grid": [
-            "exegeses",
-            "minivan",
-            "macrame",
-            "anyone"
-        ]
-    },
-    "crossword_37": {
-        "clues": {
-            "mnemonic": "Recall aid for a sequence",
-            "eeriness": "Quality of a haunted house",
-            "maintops": "High lookout platforms aboard a sailing vessel",
-            "oregon": "State bordering Idaho and the Pacific",
-            "memo": "Brief written reminder",
-            "near": "Close by",
-            "erie": "Great Lake beside Buffalo",
-            "ming": "Imperial dynasty that ruled China after Yuan",
-            "onto": "Indicating movement toward a surface",
-            "neon": "Element that glows in electric signage",
-            "isp": "Provider of household web access, for short",
-            "css": "Webpage formatting language, initially"
-        },
-        "grid": [
-            "mnemonic",
-            "eeriness",
-            "maintops",
-            "oregon"
-        ]
-    },
-    "crossword_38": {
-        "clues": {
-            "johannes": "Printer Gutenberg's given name",
-            "edifiers": "Those who provide moral instruction",
-            "dilator": "Device that makes an opening wider",
-            "intrans": "Verb type requiring no object",
-            "jedi": "Lightsaber-wielding guardian of peace",
-            "odin": "One-eyed ruler of Norse mythology",
-            "hilt": "Blade's handgrip",
-            "afar": "At a great distance",
-            "nita": "Actress Talbot's given name",
-            "neon": "Element used in luminous signs",
-            "errs": "Makes mistakes",
-            "ss": "Steamship prefix"
-        },
-        "grid": [
-            "johannes",
-            "edifiers",
-            "dilator",
-            "intrans"
-        ]
-    },
-    "crossword_39": {
-        "clues": {
-            "overdose": "Excessive drug intake",
-            "receives": "Gets in hand",
-            "crockett": "Davy's surname",
-            "sanders": "Colonel associated with a fast-food chain",
-            "orcs": "Tolkien's brutish humanoids",
-            "vera": "Wang's given name",
-            "econ": "Study of markets",
-            "recd": "Notation meaning delivered",
-            "dike": "Flood-control embankment",
-            "over": "Concluded, as a game",
-            "sets": "Groups of matching items",
-            "est": "Latin verb meaning \u201cis\u201d"
-        },
-        "grid": [
-            "overdose",
-            "receives",
-            "crockett",
-            "sanders"
-        ]
-    },
-    "crossword_40": {
-        "clues": {
-            "andretti": "Mario's motorsport family",
-            "novocain": "Local anesthetic, informally",
-            "turbot": "European flatfish prized at table",
-            "essene": "Ancient ascetic sect member",
-            "ante": "Opening wager in poker",
-            "nous": "Practical intelligence",
-            "dvrs": "Devices that save broadcasts",
-            "robe": "Ceremonial garment",
-            "econ": "Business studies, casually",
-            "tate": "British modern-art museum group",
-            "ti": "Seventh solf\u00e8ge syllable",
-            "in": "Currently fashionable"
-        },
-        "grid": [
-            "andretti",
-            "novocain",
-            "turbot",
-            "essene"
-        ]
-    },
-    "crossword_41": {
-        "clues": {
-            "motorman": "Streetcar operator",
-            "amarillo": "Texas city on the High Plains",
-            "labelled": "Marked with a tag",
-            "insole": "Shoe's inner layer",
-            "mali": "West African nation",
-            "oman": "Arabian Peninsula sultanate",
-            "tabs": "Browser page markers",
-            "oreo": "Twisted sandwich biscuit",
-            "rill": "Tiny flowing channel",
-            "mlle": "French title for an unmarried woman",
-            "ale": "Hoppy pub beverage",
-            "nod": "Brief drowsy gesture"
-        },
-        "grid": [
-            "motorman",
-            "amarillo",
-            "labelled",
-            "insole"
-        ]
-    },
-    "crossword_42": {
-        "clues": {
-            "cleaving": "Dividing with a blade",
-            "happened": "Took place",
-            "encarta": "Microsoft's discontinued digital encyclopedia",
-            "scorner": "One who holds others in contempt",
-            "setters": "Those who establish rules",
-            "chess": "Board game involving kings and queens",
-            "lance": "Medieval weapon for a mounted warrior",
-            "epcot": "Orlando theme park devoted to innovation and culture",
-            "apart": "Not together",
-            "verne": "Author of Around the World in Eighty Days",
-            "inter": "Commit to the earth",
-            "nears": "Approaches",
-            "gd": "General duty, in military shorthand"
-        },
-        "grid": [
-            "cleaving",
-            "happened",
-            "encarta",
-            "scorner",
-            "setters"
-        ]
-    },
-    "crossword_43": {
-        "clues": {
-            "polished": "Refined and gleaming",
-            "eventide": "Twilight hour",
-            "sampans": "Asian riverboats",
-            "troupe": "Performing company",
-            "synths": "Electronic keyboards, familiarly",
-            "pests": "Annoying vermin",
-            "ovary": "Seed-bearing organ of a flower",
-            "lemon": "Yellow citrus fruit",
-            "input": "Information supplied to a machine",
-            "staph": "Skin-infecting bacterium, informally",
-            "hines": "Gregory or Lionel",
-            "eds": "Newsroom revisers, briefly",
-            "de": "French word meaning \u201cof\u201d"
-        },
-        "grid": [
-            "polished",
-            "eventide",
-            "sampans",
-            "troupe",
-            "synths"
-        ]
-    },
-    "crossword_44": {
-        "clues": {
-            "debasing": "Lowering in rank or worth",
-            "examiner": "One who scrutinizes answers",
-            "easiest": "Most effortless",
-            "pledges": "Promises made solemnly",
-            "street": "City thoroughfare",
-            "deeps": "Oceanic abysses",
-            "exalt": "Praise to the skies",
-            "baser": "Less noble",
-            "amide": "Organic compound with carbonyl beside nitrogen",
-            "siege": "Prolonged encirclement of a stronghold",
-            "inset": "Small picture placed within a larger one",
-            "nets": "Fishing meshes",
-            "gr": "Weight notation used by apothecaries"
-        },
-        "grid": [
-            "debasing",
-            "examiner",
-            "easiest",
-            "pledges",
-            "street"
-        ]
-    },
-    "crossword_45": {
-        "clues": {
-            "postcode": "Regional digits on an envelope",
-            "orthodox": "Strictly traditional",
-            "sedate": "Quiet and composed",
-            "hosier": "Stocking seller",
-            "posh": "Luxuriously elegant",
-            "oreo": "Sandwich biscuit with white filling",
-            "stds": "Abbreviated infections passed through intimacy",
-            "thai": "Language of Bangkok",
-            "cote": "Small shelter for pigeons",
-            "oder": "River forming part of Poland\u2019s western border",
-            "do": "Sol-fa syllable after ti",
-            "ex": "Former spouse, casually"
-        },
-        "grid": [
-            "postcode",
-            "orthodox",
-            "sedate",
-            "hosier"
-        ]
-    },
-    "crossword_46": {
-        "clues": {
-            "jostling": "Shoving amid a crowd",
-            "intranet": "Private office system",
-            "bloated": "Excessively swollen",
-            "sylphs": "Mythical beings of the air",
-            "jibs": "Triangular sails",
-            "only": "Solely, and nothing more",
-            "stol": "Cleric\u2019s long shoulder garment",
-            "trap": "Snare for unwary prey",
-            "lath": "Thin strip supporting plaster",
-            "ines": "Several obsolete measurement units",
-            "ned": "Scottish hooligan",
-            "gt": "Grand touring, in auto ads"
-        },
-        "grid": [
-            "jostling",
-            "intranet",
-            "bloated",
-            "sylphs"
-        ]
-    },
-    "crossword_47": {
-        "clues": {
-            "sortied": "Went forth on a military raid",
-            "piously": "With devout fervor",
-            "usable": "Fit for practical employment",
-            "redeem": "Recover from a pawnshop",
-            "spur": "Rouse to action",
-            "oise": "French waterway reaching the Seine",
-            "road": "Route for wheeled travel",
-            "tube": "Underground conveyance",
-            "isle": "Small landmass at sea",
-            "elem": "Grade-school abbreviation",
-            "dy": "Abbreviation for a rare-earth metal"
-        },
-        "grid": [
-            "sortied",
-            "piously",
-            "usable",
-            "redeem"
-        ]
-    },
-    "crossword_48": {
-        "clues": {
-            "levitate": "Float free of the ground",
-            "eyeliner": "Cosmetic for defining lids",
-            "detentes": "Periods of eased international tension",
-            "assays": "Tests of a sample's composition",
-            "leda": "Queen visited by Zeus in swan form",
-            "eyes": "Organs of sight",
-            "vets": "Animal doctors, informally",
-            "ilea": "Small-intestine sections",
-            "tiny": "Minuscule",
-            "ants": "Colony workers",
-            "tee": "Golfing support",
-            "ers": "Hospital units for urgent care"
-        },
-        "grid": [
-            "levitate",
-            "eyeliner",
-            "detentes",
-            "assays"
-        ]
-    },
-    "crossword_49": {
-        "clues": {
-            "blastoff": "Rocket launch moment",
-            "almohad": "Medieval North African ruling dynasty",
-            "gaoler": "Prison custodian",
-            "encore": "Audience-demanded repeat",
-            "loosed": "Set free",
-            "bagel": "Ring-shaped breakfast bread",
-            "llano": "Treeless South American plain",
-            "amoco": "Former petroleum company, now part of BP",
-            "solos": "Unaccompanied performances",
-            "there": "In that place",
-            "oared": "Propelled by rowing",
-            "fd": "Municipal emergency-services abbreviation"
-        },
-        "grid": [
-            "blastoff",
-            "almohad",
-            "gaoler",
-            "encore",
-            "loosed"
+            "highrise",
+            "asleep",
+            "alumna",
+            "seeped"
         ]
     }
 }
