@@ -121,6 +121,34 @@ def test_opencode_echoed_example_does_not_override_requested_clues():
     }
 
 
+def test_opencode_incomplete_clue_set_raises():
+    output = '{"clues": {"APPLE": "A fruit", "OCEAN": "Vast body of salt water"}}'
+
+    with pytest.raises(cc.ClueGenerationError, match="clues"):
+        cc.parse_clues(output, ["APPLE", "OCEAN", "RIVER"])
+
+
+def test_opencode_clue_keys_are_canonicalized_to_requested_words():
+    output = '{"clues": {"EXPLORED": "Travelled through unknown land"}}'
+
+    assert cc.parse_clues(output, ["explored"]) == {
+        "explored": "Travelled through unknown land"
+    }
+
+
+def test_opencode_invalid_candidate_does_not_hide_later_valid_clues():
+    output = (
+        '{"clues": {"APPLE": null}}\n'
+        '{"clues": {"APPLE": "A fruit that keeps the doctor away", '
+        '"OCEAN": "Vast body of salt water"}}'
+    )
+
+    assert cc.parse_clues(output, ["APPLE", "OCEAN"]) == {
+        "APPLE": "A fruit that keeps the doctor away",
+        "OCEAN": "Vast body of salt water",
+    }
+
+
 def test_opencode_output_without_requested_words_raises():
     output = '{"clues": {"apple": "A fruit", "python": "A snake"}}'
 

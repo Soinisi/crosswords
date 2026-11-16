@@ -158,10 +158,10 @@ def build_opencode_prompt(crossword_words) -> str:
 
 def parse_clues(output: str, crossword_words) -> Dict[str, str]:
     """Pull the {'clues': {word: clue}} payload for ``crossword_words`` out of raw provider output."""
-    wanted = {str(word).strip().upper() for word in crossword_words}
+    requested = {}
+    for word in crossword_words:
+        requested[str(word).strip().upper()] = str(word)
     decoder = json.JSONDecoder()
-    best = None
-    best_matches = 0
     for match in re.finditer(r"\{", output):
         try:
             candidate, _ = decoder.raw_decode(output, match.start())
@@ -171,15 +171,20 @@ def parse_clues(output: str, crossword_words) -> Dict[str, str]:
             isinstance(candidate, dict) and isinstance(candidate.get("clues"), dict)
         ):
             continue
-        clues = ClueOutput.model_validate(candidate).clues
-        matches = sum(1 for word in clues if str(word).strip().upper() in wanted)
-        if matches > best_matches:
-            best, best_matches = clues, matches
-    if best is None:
-        raise RetryableClueGenerationError(
-            "Clue output contained no JSON object with a 'clues' mapping for the requested words"
-        )
-    return best
+        try:
+            clues = ClueOutput.model_validate(candidate).clues
+        except ValidationError:
+            continue
+        matched = {
+            requested[str(word).strip().upper()]: clue
+            for word, clue in clues.items()
+            if str(word).strip().upper() in requested
+        }
+        if len(matched) == len(requested):
+            return matched
+    raise RetryableClueGenerationError(
+        "Clue output contained no complete JSON 'clues' mapping for the requested words"
+    )
 
 
 def generate_clues_openai(prompt: str) -> Dict[str, str]:
