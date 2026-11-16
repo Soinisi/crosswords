@@ -4,6 +4,7 @@
 
 - Copy `.env` from the repo root and fill in `OPENAI_API_KEY` + `OPENAI_BASE_URL` for remote OpenAI, or `LLM_BASE_URL` + `LLM_API_KEY` + `LLM_MODEL_NAME` for a local llamafile.
 - `pip install -r requirements.txt` installs Python generation dependencies.
+- `pip install -r requirements-dev.txt` adds `pytest` for the test suite.
 - `npm install` installs the Node/Vite static-site dev server.
 - The Python generator reads `.env` from the cwd via `load_dotenv()` in `crossword_creator.py`.
 
