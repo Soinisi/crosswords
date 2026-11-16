@@ -12,7 +12,8 @@ pip install -r requirements.txt
 npm install
 ```
 
-Create `.env` in the repo root. Use either remote OpenAI or a local llamafile.
+Create `.env` in the repo root. Use either remote OpenAI or a local llamafile; the opencode
+CLI path below needs no keys.
 
 ```bash
 # Remote OpenAI
@@ -21,6 +22,19 @@ OPENAI_BASE_URL=https://api.openai.com/v1
 ```
 
 The `.env` file is loaded from the current working directory by `load_dotenv()` in `crossword_creator.py`.
+
+### opencode CLI (no API key)
+
+Clues can instead be generated through the `opencode` CLI, which reuses your existing
+opencode login and model account. No `OPENAI_API_KEY` is needed:
+
+```bash
+CLUE_PROVIDER=opencode
+```
+
+`CLUE_PROVIDER` defaults to `openai`, so the pydantic-ai/OpenAI path above stays the
+default and is unaffected. The `LLM_*`/`OPENAI_*` settings are ignored on the opencode
+path. See [Clue Providers](#clue-providers) for the opencode settings and defaults.
 
 ### Local Model
 
@@ -60,6 +74,9 @@ python -m crossword_creator.crossword_creator prod 30
 
 # Same with debug logging
 python -m crossword_creator.crossword_creator --verbose
+
+# Generate clues through the opencode CLI instead of the OpenAI API
+CLUE_PROVIDER=opencode python -m crossword_creator.crossword_creator prod
 ```
 
 To generate raw grids interactively:
@@ -118,7 +135,7 @@ It rotates among committed `crossword_*` entries in `crossword.json`. Netlify do
              |
      crossword_grids.txt     raw grids, Python repr format
              |
-   crossword_creator.py      LLM via pydantic-ai
+   crossword_creator.py      clues: pydantic-ai or opencode CLI
              |
        crossword.json        generated grids + clues
              |
@@ -139,6 +156,8 @@ Python is used only for crossword generation. The user-facing app is static HTML
 | `crossword_creator/crossword_arc.json` | Archive of older crosswords. Not read at runtime. |
 | `crossword_creator/crossword_grids.txt` | Raw grids output by the solver, one `list[str]` per line. |
 | `crossword_creator/wl.txt` | Word dictionary used by the solver. |
+| `tests/` | Pytest suite; clue-provider tests mock the opencode subprocess. |
+| `requirements-dev.txt` | Generation deps plus `pytest`. |
 | `package.json` | Node/Vite local static-site workflow. |
 | `netlify.toml` | Netlify static deploy config. |
 
@@ -148,7 +167,7 @@ Python:
 
 | Dependency | Purpose |
 |---|---|
-| `pydantic-ai-slim[openai]` | AI agent for clue generation. |
+| `pydantic-ai-slim[openai]` | AI agent for clue generation (`CLUE_PROVIDER=openai`). |
 | `numpy` | Fast array-based word matching in the grid solver. |
 | `python-dotenv` | Loads `.env`. |
 
@@ -158,7 +177,22 @@ Node:
 |---|---|
 | `vite` | Local static-site dev server. |
 
+## Clue Providers
+
+| Env var | Default | Purpose |
+|---|---|---|
+| `CLUE_PROVIDER` | `openai` | `openai` uses pydantic-ai; `opencode` shells out to the opencode CLI. |
+| `OPENCODE_MODEL` | `opencode-go/deepseek-v4-pro` | Model for `opencode run --model`. |
+| `OPENCODE_TIMEOUT` | `900` | Seconds allowed for one `opencode run` call. |
+
+The opencode path needs no API key: it runs
+`opencode run --model "$OPENCODE_MODEL" "<prompt>"` as your normal user, inheriting your
+opencode authentication, and parses the model's JSON output. Both providers produce the
+same `{"clues": {word: clue}}` data, so `crossword.json` is identical in shape either way.
+
 ## Model
+
+OpenAI path (`CLUE_PROVIDER=openai`, the default):
 
 | Env var | Default | Purpose |
 |---|---|---|
@@ -167,3 +201,13 @@ Node:
 | `LLM_API_KEY` | `OPENAI_API_KEY` | API key. |
 
 Set `LLM_*` vars to override for local models. Unset them to use the OpenAI cloud defaults.
+
+## Tests
+
+```bash
+pip install -r requirements-dev.txt
+python -m pytest
+```
+
+The clue-provider tests mock the opencode subprocess, so they need neither a live
+`opencode` login nor an OpenAI key.

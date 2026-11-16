@@ -4,6 +4,7 @@
 
 - Copy `.env` from the repo root and fill in `OPENAI_API_KEY` + `OPENAI_BASE_URL` for remote OpenAI, or `LLM_BASE_URL` + `LLM_API_KEY` + `LLM_MODEL_NAME` for a local llamafile.
 - `pip install -r requirements.txt` installs Python generation dependencies.
+- `pip install -r requirements-dev.txt` adds `pytest` for the test suite.
 - `npm install` installs the Node/Vite static-site dev server.
 - The Python generator reads `.env` from the cwd via `load_dotenv()` in `crossword_creator.py`.
 
@@ -31,6 +32,9 @@ python -m crossword_creator.crossword_creator --verbose
 # Interactive grid generation (prompts for dimensions)
 python -m crossword_creator.grid_creator
 
+# Run the Python tests (clue-provider tests mock the opencode subprocess)
+python -m pytest
+
 # Copy generated data into the static site for local preview
 cp crossword_creator/crossword.json crossword_creator/site/crossword.json
 ```
@@ -39,7 +43,7 @@ cp crossword_creator/crossword.json crossword_creator/site/crossword.json
 
 1. `wl.txt` - 91K-line word dictionary (all-caps; used as-is).
 2. `grid_creator.py` - backtracking solver with NumPy. Writes raw grids to `crossword_grids.txt` (one `list[str]` per line, Python repr format).
-3. `crossword_creator.py` - reads `crossword_grids.txt`, calls OpenAI-compatible API for clues via `pydantic-ai`, writes `crossword.json`.
+3. `crossword_creator.py` - reads `crossword_grids.txt`, calls an OpenAI-compatible API for clues via `pydantic-ai` by default, or the opencode CLI when `CLUE_PROVIDER=opencode`, and writes `crossword.json`.
 4. Netlify build - copies `crossword_creator/crossword.json` to `crossword_creator/site/crossword.json`.
 5. `site/index.html` - standalone static app. Fetches `crossword.json`, picks today's crossword by visitor-local date, and changes puzzle at local midnight.
 
