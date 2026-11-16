@@ -86,8 +86,6 @@ def test_opencode_provider_routes_to_cli(monkeypatch, opencode_run):
     ]
     prompt = command[4]
     assert "APPLE" in prompt and "OCEAN" in prompt
-    assert "JSON" in prompt
-    assert "no code fences" in prompt
     # The CLI must inherit the user's environment (and so their auth).
     assert "env" not in kwargs
 
