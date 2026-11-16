@@ -57,6 +57,10 @@ class ClueGenerationError(RuntimeError):
     """Raised when a clue provider cannot produce usable clues."""
 
 
+class RetryableClueGenerationError(ClueGenerationError):
+    """Raised when a clue provider failure may resolve on a retry."""
+
+
 def clue_provider() -> str:
     """Selected clue backend, from CLUE_PROVIDER (defaults to "openai")."""
     return os.getenv("CLUE_PROVIDER", DEFAULT_CLUE_PROVIDER).strip().lower()
@@ -137,7 +141,11 @@ def stream_generate_crosswords():
 
 RETRIES = 3
 
-RETRYABLE_CLUE_ERRORS = (ValidationError, ModelAPIError, ClueGenerationError)
+RETRYABLE_CLUE_ERRORS = (
+    ValidationError,
+    ModelAPIError,
+    RetryableClueGenerationError,
+)
 
 
 def build_opencode_prompt(crossword_words) -> str:
@@ -148,22 +156,30 @@ def build_opencode_prompt(crossword_words) -> str:
     )
 
 
-def parse_clues(output: str) -> Dict[str, str]:
-    """Pull the {'clues': {word: clue}} payload out of raw provider output."""
+def parse_clues(output: str, crossword_words) -> Dict[str, str]:
+    """Pull the {'clues': {word: clue}} payload for ``crossword_words`` out of raw provider output."""
+    wanted = {str(word).strip().upper() for word in crossword_words}
     decoder = json.JSONDecoder()
-    payloads = []
+    best = None
+    best_matches = 0
     for match in re.finditer(r"\{", output):
         try:
             candidate, _ = decoder.raw_decode(output, match.start())
         except json.JSONDecodeError:
             continue
-        if isinstance(candidate, dict) and isinstance(candidate.get("clues"), dict):
-            payloads.append(candidate)
-    if not payloads:
-        raise ClueGenerationError(
-            "Clue output contained no JSON object with a 'clues' mapping"
+        if not (
+            isinstance(candidate, dict) and isinstance(candidate.get("clues"), dict)
+        ):
+            continue
+        clues = ClueOutput.model_validate(candidate).clues
+        matches = sum(1 for word in clues if str(word).strip().upper() in wanted)
+        if matches > best_matches:
+            best, best_matches = clues, matches
+    if best is None:
+        raise RetryableClueGenerationError(
+            "Clue output contained no JSON object with a 'clues' mapping for the requested words"
         )
-    return ClueOutput.model_validate(payloads[-1]).clues
+    return best
 
 
 def generate_clues_openai(prompt: str) -> Dict[str, str]:
@@ -188,7 +204,7 @@ def generate_clues_opencode(crossword_words) -> Dict[str, str]:
             "opencode CLI not found on PATH; install opencode or set CLUE_PROVIDER=openai"
         ) from e
     except subprocess.TimeoutExpired as e:
-        raise ClueGenerationError(
+        raise RetryableClueGenerationError(
             f"opencode CLI timed out after {opencode_timeout()}s"
         ) from e
     if completed.returncode != 0:
@@ -196,7 +212,7 @@ def generate_clues_opencode(crossword_words) -> Dict[str, str]:
         raise ClueGenerationError(
             f"opencode CLI exited with status {completed.returncode}: {stderr[-1000:]}"
         )
-    return parse_clues(completed.stdout or "")
+    return parse_clues(completed.stdout or "", crossword_words)
 
 
 def generate_clues(crossword_words):

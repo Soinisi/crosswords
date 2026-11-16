@@ -105,15 +105,32 @@ def test_opencode_output_is_parsed_from_noisy_text():
         "```json\n" + CLUES_JSON + "\n```\n"
         "Let me know if you want them harder."
     )
-    assert cc.parse_clues(output) == {
+    assert cc.parse_clues(output, ["APPLE", "OCEAN"]) == {
         "APPLE": "A fruit that keeps the doctor away",
         "OCEAN": "Vast body of salt water",
     }
 
 
-def test_opencode_output_without_clues_payload_raises(sleeper):
+def test_opencode_echoed_example_does_not_override_requested_clues():
+    example = '{"clues": {"apple": "A fruit", "python": "A snake"}}'
+    output = f"{CLUES_JSON}\nFor example: {example}"
+
+    assert cc.parse_clues(output, ["APPLE", "OCEAN"]) == {
+        "APPLE": "A fruit that keeps the doctor away",
+        "OCEAN": "Vast body of salt water",
+    }
+
+
+def test_opencode_output_without_requested_words_raises():
+    output = '{"clues": {"apple": "A fruit", "python": "A snake"}}'
+
     with pytest.raises(cc.ClueGenerationError, match="clues"):
-        cc.parse_clues("I could not do that.")
+        cc.parse_clues(output, ["RIVER", "STONE"])
+
+
+def test_opencode_output_without_clues_payload_raises():
+    with pytest.raises(cc.ClueGenerationError, match="clues"):
+        cc.parse_clues("I could not do that.", ["APPLE"])
 
 
 def test_opencode_nonzero_exit_raises_clear_error(monkeypatch, sleeper):
@@ -126,7 +143,7 @@ def test_opencode_nonzero_exit_raises_clear_error(monkeypatch, sleeper):
 
     with pytest.raises(cc.ClueGenerationError, match="status 2"):
         cc.generate_clues(["APPLE"])
-    assert sleeper == [2, 4]
+    assert sleeper == []
 
 
 def test_opencode_missing_cli_raises_clear_error(monkeypatch, sleeper):
@@ -139,6 +156,7 @@ def test_opencode_missing_cli_raises_clear_error(monkeypatch, sleeper):
 
     with pytest.raises(cc.ClueGenerationError, match="not found on PATH"):
         cc.generate_clues(["APPLE"])
+    assert sleeper == []
 
 
 def test_opencode_retries_after_unparseable_output(monkeypatch, sleeper):
@@ -157,7 +175,7 @@ def test_opencode_retries_after_unparseable_output(monkeypatch, sleeper):
 def test_crossword_json_shape_written_via_opencode(monkeypatch, tmp_path, opencode_run):
     monkeypatch.setenv("CLUE_PROVIDER", "opencode")
     grid_file = tmp_path / "grids.txt"
-    grid_file.write_text('["APP", "OCE"]\n')
+    grid_file.write_text('["APPLE", "OCEAN"]\n')
     crossword_file = tmp_path / "crossword.json"
     monkeypatch.setattr(cc, "GRID_FILEPATH", grid_file)
     monkeypatch.setattr(cc, "CROSSWORDS_FILEPATH", crossword_file)
@@ -167,7 +185,7 @@ def test_crossword_json_shape_written_via_opencode(monkeypatch, tmp_path, openco
 
     written = json.loads(crossword_file.read_text())
     assert list(written) == ["crossword_0"]
-    assert written["crossword_0"]["grid"] == ["APP", "OCE"]
+    assert written["crossword_0"]["grid"] == ["APPLE", "OCEAN"]
     assert written["crossword_0"]["clues"] == {
         "APPLE": "A fruit that keeps the doctor away",
         "OCEAN": "Vast body of salt water",
